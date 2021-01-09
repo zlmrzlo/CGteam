@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
     private void IsGround()
     {
         isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
-        crossHair.RunningAnimation(!isGround);
+        crossHair.JumpingAnimation(!isGround);
     }
 
     private void Move()
@@ -155,7 +155,6 @@ public class PlayerController : MonoBehaviour
     {
         if (!isRun && !isCrouch && isGround) 
         {
-            Debug.Log(Vector3.Distance(lastPos, transform.position));
             if (Vector3.Distance(lastPos, transform.position) >= 0.01f)
                 isWalk = true;
             else isWalk = false;
