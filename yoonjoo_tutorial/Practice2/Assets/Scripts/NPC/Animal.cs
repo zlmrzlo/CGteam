@@ -29,6 +29,8 @@ public class Animal : MonoBehaviour
     protected float waitTime; // 대기 시간
     [SerializeField]
     protected float runTime; // 뛰기 시간
+    [SerializeField]
+    protected float deadTime; // 시체 유지 시간
     protected float currentTime;
 
     // 필요 컴포넌트
@@ -62,6 +64,10 @@ public class Animal : MonoBehaviour
             Move();
             ElapseTime();
         }
+        else
+        {
+            ElapseTime();
+        }    
     }
 
     protected void Move()
@@ -76,9 +82,13 @@ public class Animal : MonoBehaviour
         if (isAction)
         {
             currentTime -= Time.deltaTime;
-            if (currentTime <= 0)
+            if (currentTime <= 0 && !isDead)
             {
                 ReSet();
+            }
+            else if(currentTime <= 0 && isDead)
+            {
+                Destroy(gameObject);
             }
         }
     }
@@ -127,6 +137,8 @@ public class Animal : MonoBehaviour
         isRunning = false;
         isDead = true;
         anim.SetTrigger("Dead");
+        currentTime = deadTime;
+        
     }
     protected void RandomSound()
     {
