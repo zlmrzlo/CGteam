@@ -19,6 +19,10 @@ public class PlayerController : MonoBehaviour
     private float applySpeed;
     private bool isCrouch = false;
 
+    [SerializeField] private float swimSpeed;
+    [SerializeField] private float swimFastSpeed;
+    [SerializeField] private float upSwimSpeed;
+
     [SerializeField] private float originJumpForce;
     [SerializeField] private float crouchJumpForce;
     private float applyJumpForce;
@@ -28,9 +32,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lookSensitivity;
     [SerializeField] private float cameraRotationLimit;
     private float currentCameraRotationX = 45f;
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera theCamera;
     private GunController gunController;
     private CrossHair crossHair;
+    private StatusController statusController;
 
     // Start is called before the first frame update
     void Start()
@@ -39,9 +44,10 @@ public class PlayerController : MonoBehaviour
         capsuleCollider = GetComponent<CapsuleCollider>();
         gunController = FindObjectOfType<GunController>();
         crossHair = FindObjectOfType<CrossHair>();
+        statusController = GetComponent<StatusController>();
 
         applySpeed = walkSpeed;
-        originPosY = camera.transform.localPosition.y;
+        originPosY = theCamera.transform.localPosition.y;
         applyCrouchPosY = originPosY;
         applyJumpForce = originJumpForce;
     }
@@ -49,35 +55,64 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        IsGround();
-        TryRun();
-        TryCrouch();
-        TryJump();
-        Move();
-        CameraRotation();
-        CharacterRotation();
+        if(GameManager.canPlayerMove)
+        {
+            WaterCheck();
+            IsGround();
+            if(!GameManager.isWater)
+                TryRun();
+            else
+
+            TryCrouch();
+            TryJump();
+            Move();
+            CameraRotation();
+            CharacterRotation();
+        }
     }
     void FixedUpdate()
     {
         MoveCheck();
     }
 
+    private void WaterCheck()
+    {
+        if(GameManager.isWater)
+        {
+            if (Input.GetKeyDown(KeyCode.Space) && isGround && statusController.GetCurrentSP() > 0 && !GameManager.isWater)
+                Jump();
+            
+            else if (Input.GetKey(KeyCode.Space) && GameManager.isWater)
+                UpSwim();
+        }
+    }
+    private void UpSwim()
+    {
+        rigid.velocity = transform.up * upSwimSpeed;
+    }
+
     private void TryJump()
     {
         applyJumpForce = isCrouch ? crouchJumpForce : originJumpForce;
-        if(Input.GetKeyDown(KeyCode.Space)&&isGround)
+        if (Input.GetKeyDown(KeyCode.Space) && isGround && statusController.GetCurrentSP() > 0) 
         {
-            rigid.velocity = transform.up * applyJumpForce;
+            Jump();
         }
+    }
+
+    private void Jump()
+    {
+        statusController.DecreaseStamina(100);
+        rigid.velocity = transform.up * applyJumpForce;
     }
 
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyCode.LeftShift) && statusController.GetCurrentSP() > 0)
         {
             Running();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || statusController.GetCurrentSP() <= 0)
         {
             RunningCancel();
         }
@@ -88,6 +123,7 @@ public class PlayerController : MonoBehaviour
         gunController.CancelFineSight();
         isRun = true;
         crossHair.RunningAnimation(isRun);
+        statusController.DecreaseStamina(10);
         applySpeed = runSpeed;
     }
 
@@ -119,17 +155,17 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator CrouchCoroutine()
     {
-        float _posY = camera.transform.localPosition.y;
+        float _posY = theCamera.transform.localPosition.y;
         int count = 0;
         while(_posY!=applyCrouchPosY)
         {
             count++;
             _posY = Mathf.Lerp(_posY, applyCrouchPosY, 0.3f);
-            camera.transform.localPosition = new Vector3(0, _posY, 0);
+            theCamera.transform.localPosition = new Vector3(0, _posY, 0);
             if (count > 15) break;
             yield return null;
         }
-        camera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0);
+        theCamera.transform.localPosition = new Vector3(0, applyCrouchPosY, 0);
     }
 
     private void IsGround()
@@ -174,9 +210,9 @@ public class PlayerController : MonoBehaviour
     private void CameraRotation()
     {
         float _xRotation = Input.GetAxisRaw("Mouse Y");
-        float _cameraRotationX = _xRotation * lookSensitivity;
-        currentCameraRotationX -= _cameraRotationX;
+        float _theCameraRotationX = _xRotation * lookSensitivity;
+        currentCameraRotationX -= _theCameraRotationX;
         currentCameraRotationX = Mathf.Clamp(currentCameraRotationX, -cameraRotationLimit, cameraRotationLimit);
-        camera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
+        theCamera.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
     }
 }

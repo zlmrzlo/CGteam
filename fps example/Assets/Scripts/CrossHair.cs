@@ -11,34 +11,52 @@ public class CrossHair : MonoBehaviour
 
     public void WalkingAnimation(bool _flag)
     {
-        WeaponManager.currentWeaponAnim.SetBool("walk", _flag);
-        animator.SetBool("walking", _flag);
+        if(!GameManager.isWater)
+        {
+            WeaponManager.currentWeaponAnim.SetBool("walk", _flag);
+            animator.SetBool("walking", _flag);
+        }
     }
     public void RunningAnimation(bool _flag)
     {
-        WeaponManager.currentWeaponAnim.SetBool("run", _flag);
-        animator.SetBool("running", _flag);
+        if (!GameManager.isWater)
+        {
+            WeaponManager.currentWeaponAnim.SetBool("run", _flag);
+            animator.SetBool("running", _flag);
+        }
     }
     public void JumpingAnimation(bool _flag)
     {
-        animator.SetBool("running", _flag);
+        if (!GameManager.isWater)
+        {
+            animator.SetBool("running", _flag);
+        }
     }
     public void CrouchingAnimation(bool _flag)
     {
-        animator.SetBool("crouching", _flag);
+        if (!GameManager.isWater)
+        {
+            animator.SetBool("crouching", _flag);
+        }
     }
     public void FineSightAnimation(bool _flag)
     {
-        animator.SetBool("finesight", _flag);
+        if (!GameManager.isWater)
+        {
+            animator.SetBool("finesight", _flag);
+        }
     }
     public void FireAnimation()
     {
-        if(animator.GetBool("walking"))
-            animator.SetTrigger("walkfire");
-        else if(animator.GetBool("crouching"))
-            animator.SetTrigger("crouchfire");
-        else
-            animator.SetTrigger("idlefire");
+        if (!GameManager.isWater)
+        {
+            if (animator.GetBool("walking"))
+                animator.SetTrigger("walkfire");
+            else if (animator.GetBool("crouching"))
+                animator.SetTrigger("crouchfire");
+            else
+                animator.SetTrigger("idlefire");
+        }
         
     }
     public float GetAccuracy()

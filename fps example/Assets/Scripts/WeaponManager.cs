@@ -109,4 +109,17 @@ public class WeaponManager : MonoBehaviour
             pickaxeController.CloseWeaponChange(pickaxeDictionary[_name]);
 
     }
+
+    public IEnumerator WeaponInCoroutine()
+    {
+        isChangeWeapon = true;
+        currentWeaponAnim.SetTrigger("weapon_out");
+        yield return new WaitForSeconds(changeWeaponDelayTime);
+        currentWeapon.gameObject.SetActive(false);
+    }
+    public void WeaponOut()
+    {
+        isChangeWeapon = false;
+        currentWeapon.gameObject.SetActive(true);
+    }
 }

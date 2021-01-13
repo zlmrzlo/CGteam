@@ -8,16 +8,22 @@ public abstract class CloseWeaponController : MonoBehaviour
     protected bool isAttack = false;
     protected bool isSwing = false;
     protected RaycastHit hitInfo;
+    [SerializeField] protected LayerMask layerMask;
 
     protected void TryAttack()
     {
-        if (Input.GetButton("Fire1"))
+
+        if (!Inventory.inventoryActivated)
         {
-            if (!isAttack)
+            if (Input.GetButton("Fire1"))
             {
-                StartCoroutine(AttackCoroutine());
+                if (!isAttack)
+                {
+                    StartCoroutine(AttackCoroutine());
+                }
             }
         }
+
     }
 
     protected IEnumerator AttackCoroutine()
@@ -37,7 +43,7 @@ public abstract class CloseWeaponController : MonoBehaviour
 
     protected bool CheckObject()
     {
-        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, currentCloseWeapon.range))
+        if (Physics.Raycast(transform.position, transform.forward, out hitInfo, currentCloseWeapon.range, layerMask)) 
         {
             return true;
         }

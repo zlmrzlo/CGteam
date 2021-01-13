@@ -15,6 +15,7 @@ public class GunController : MonoBehaviour
 
     private AudioSource audioSource;
     private RaycastHit hitInfo;
+    [SerializeField] protected LayerMask layerMask;
     [SerializeField] private Camera cam;
     [SerializeField] private GameObject hitEffectPrefab;
     private CrossHair crossHair;
@@ -125,10 +126,10 @@ public class GunController : MonoBehaviour
     private void Hit()
     {
         if (Physics.Raycast(cam.transform.position, cam.transform.forward +
-            new Vector3(Random.Range(-crossHair.GetAccuracy()-currentGun.accuracy, crossHair.GetAccuracy() + currentGun.accuracy),
+            new Vector3(Random.Range(-crossHair.GetAccuracy() - currentGun.accuracy, crossHair.GetAccuracy() + currentGun.accuracy),
                         Random.Range(-crossHair.GetAccuracy() - currentGun.accuracy, crossHair.GetAccuracy() + currentGun.accuracy),
                         0)
-            , out hitInfo, currentGun.range))
+            , out hitInfo, currentGun.range, layerMask)) 
         {
             var clone = Instantiate(hitEffectPrefab, hitInfo.point, Quaternion.LookRotation(hitInfo.normal));
             Destroy(clone, 2f);
