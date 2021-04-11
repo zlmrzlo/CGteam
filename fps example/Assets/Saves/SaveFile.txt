@@ -1,0 +1,1 @@
+{"playerPos":{"x":10.363245010375977,"y":1.0000001192092896,"z":13.364643096923829},"playerRot":{"x":0.0,"y":59.999969482421878,"z":0.0},"invenArrayNumber":[6],"invenItemName":["Rock"],"invenItemNumber":[3]}
