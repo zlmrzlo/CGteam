@@ -16,7 +16,7 @@ public class ItemEffectDatabase : MonoBehaviour
     [SerializeField] private ItemEffect[] itemEffects;
 
     //필요한 컴포넌트
-    //[SerializeField] private StatusController thePlayerStatus;
+    [SerializeField] private StatusController thePlayerStatus;
     //[SerializeField] private WeaponManager theWeaponManager;
     [SerializeField] private SlotToolTip theSlotToolTip;
 
@@ -50,10 +50,10 @@ public class ItemEffectDatabase : MonoBehaviour
                         switch (itemEffects[x].part[y])
                         {
                             case HP:
-                                //thePlayerStatus.IncreaseHP(itemEffects[x].num[y]);
+                                thePlayerStatus.IncreaseHP(itemEffects[x].num[y]);
                                 break;
                             case MP:
-                                //thePlayerStatus.IncreaseMP(itemEffects[x].num[y]);
+                                thePlayerStatus.IncreaseMP(itemEffects[x].num[y]);
                                 break;
                             default:
                                 Debug.Log("잘못된 Status 부위. HP, MP만 가능합니다");

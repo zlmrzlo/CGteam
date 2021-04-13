@@ -19,7 +19,8 @@ public class SaveAndLoad : MonoBehaviour
 
     private string SAVE_DATA_DIRECTORY;
     private string SAVE_FILENAME = "/SaveFile.txt";
-    //private PlayerController player;
+    private CharacterController player;
+
 
     private Inventory inven;
     // Start is called before the first frame update
@@ -32,11 +33,11 @@ public class SaveAndLoad : MonoBehaviour
 
     public void SaveData()
     {
-        //player = FindObjectOfType<PlayerController>();
+        player = FindObjectOfType<CharacterController>();
         inven = FindObjectOfType<Inventory>();
 
-        //saveData.playerPos = player.transform.position;
-        //saveData.playerRot = player.transform.eulerAngles;
+        saveData.playerPos = player.transform.position;
+        saveData.playerRot = player.transform.eulerAngles;
         Slot[] slots = inven.GetSlots();
         for (int i = 0; i < slots.Length; i++)
         {
@@ -57,11 +58,11 @@ public class SaveAndLoad : MonoBehaviour
         {
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
-            //player = FindObjectOfType<PlayerController>();
+            player = FindObjectOfType<CharacterController>();
             inven = FindObjectOfType<Inventory>();
 
-            //player.transform.position = saveData.playerPos;
-            //player.transform.eulerAngles = saveData.playerRot;
+            player.transform.position = saveData.playerPos;
+            player.transform.eulerAngles = saveData.playerRot;
 
             for (int i = 0; i < saveData.invenItemName.Count; i++)
             {

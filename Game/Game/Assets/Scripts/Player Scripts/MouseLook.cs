@@ -14,7 +14,7 @@ public class MouseLook : MonoBehaviour {
     private bool can_Unlock = true;
 
     [SerializeField]
-    private float sensivity = 5f;
+    public float sensivity = 5f;
 
     [SerializeField]
     private int smooth_Steps = 10;
