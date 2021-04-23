@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5674173788940278555}
   - component: {fileID: 8971533592060577676}
   - component: {fileID: 2567454204931677307}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: gravityController
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,6 @@ MeshRenderer:
   m_LightProbeUsage: 0
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -85,7 +84,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!65 &530725457307904567
 BoxCollider:
   m_ObjectHideFlags: 0
