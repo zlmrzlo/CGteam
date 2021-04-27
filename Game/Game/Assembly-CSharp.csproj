@@ -72,7 +72,8 @@
     <Compile Include="Assets\Scripts\Item\Stalagmite.cs" />
     <Compile Include="Assets\Scripts\Item\smokeShell.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\AttackScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\GravityEffect.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Hand.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\HandController.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\HealthScript.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\Player Scripts\PlayerAttack.cs" />

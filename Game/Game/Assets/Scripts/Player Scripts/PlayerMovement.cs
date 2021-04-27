@@ -4,12 +4,17 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour {
 
+    [SerializeField]
+    private Hand currentHand;
+
     private CharacterController character_Controller;
 
-    private Vector3 move_Direction;
+    public Vector3 move_Direction;
 
     private int count = 0;
-    public float speed = 5f;
+
+    public float applySpeed = 4.5f;
+    
     private float gravity = 20f;
 
     public float jump_Force = 10f;
@@ -31,16 +36,16 @@ public class PlayerMovement : MonoBehaviour {
                                      Input.GetAxis(Axis.VERTICAL));
 
         move_Direction = transform.TransformDirection(move_Direction);
-        move_Direction *= speed * Time.deltaTime;
+        move_Direction *= applySpeed * Time.deltaTime;
 
         ApplyGravity();
 
         character_Controller.Move(move_Direction);
 
-
     } // move player
 
     void ApplyGravity() {
+
         if (gravityChange)
         {
             if(count == 0)
@@ -74,17 +79,6 @@ public class PlayerMovement : MonoBehaviour {
         }
 
     }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.transform.tag == "Change")
-        {
-            print("Change");
-            gravityChange = !gravityChange;
-            count = 0;
-        }
-    }
-
 } // class
 
 
