@@ -29,7 +29,7 @@ public class Setting : MonoBehaviour
     [SerializeField] private Slider volumeBGM;
     [SerializeField] private Slider volumeEffect;
     [SerializeField] private Slider mouse;
-    private MouseLook mouseLook;
+    private PlayerController mouseLook;
     public AudioMixer bgmMixer;
     public AudioMixer effectMixer;
 
@@ -62,7 +62,7 @@ public class Setting : MonoBehaviour
         {
             string loadJson = File.ReadAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME);
             settingData = JsonUtility.FromJson<SettingData>(loadJson);
-            mouseLook = FindObjectOfType<MouseLook>();
+            mouseLook = FindObjectOfType<PlayerController>();
 
             // Load Brightness
             RenderSettings.ambientLight = new Color(settingData.brightness, settingData.brightness, settingData.brightness, 1);
@@ -75,7 +75,7 @@ public class Setting : MonoBehaviour
             volumeEffect.value = settingData.effectVolume;
             // Load Mouse Sensitivity
             if (mouseLook)
-                mouseLook.sensivity = settingData.mouseSensitivity;
+                mouseLook.lookSensitivity = settingData.mouseSensitivity;
             mouse.value = settingData.mouseSensitivity;
             // Load quality
             QualitySettings.SetQualityLevel(settingData.quialityIndex);
@@ -120,9 +120,9 @@ public class Setting : MonoBehaviour
 
     public void SetMouseSensitivity(float sliderValue)
     {
-        mouseLook = FindObjectOfType<MouseLook>();
+        mouseLook = FindObjectOfType<PlayerController>();
         if (mouseLook)
-            mouseLook.sensivity = sliderValue;
+            mouseLook.lookSensitivity = sliderValue;
         settingData.mouseSensitivity = sliderValue;
     }
 

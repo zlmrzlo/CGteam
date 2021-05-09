@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     // 마우스를 얼마나 민감하게 움직일 것인지 설정한다.
     [SerializeField]
-    private float lookSensitivity;
+    public float lookSensitivity;
 
     // 마우스를 움직였을 때 화면이 계속해서 돌아가는 것을
     // 방지해주기 위해서 카메라회전에 제한을 둔다.
@@ -72,20 +72,23 @@ public class PlayerController : MonoBehaviour
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        Gravity();
-        IsGround();
-        TryJump();
-        TryRun();
-        TryCrouch();
-        Move();
-        CameraRotation();
-        CharacterRotation();
-        // 위, 아래
-        CharaterRotationTryInverse();
-        // 오른쪽, 왼쪽
-        CharaterRotationTrySideInverse();
-        // 앞, 뒤
-        CharaterRotationTryFrontInverse();
+        if (GameManager.canPlayerMove)
+        {
+            Gravity();
+            IsGround();
+            TryJump();
+            TryRun();
+            TryCrouch();
+            Move();
+            CameraRotation();
+            CharacterRotation();
+            // 위, 아래
+            CharaterRotationTryInverse();
+            // 오른쪽, 왼쪽
+            CharaterRotationTrySideInverse();
+            // 앞, 뒤
+            CharaterRotationTryFrontInverse();
+        }
     }
 
     private void CharaterRotationTryFrontInverse()
