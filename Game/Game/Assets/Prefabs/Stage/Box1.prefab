@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 3374376674167063883}
   - component: {fileID: 1746626412351959188}
   - component: {fileID: 1633938555559384163}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: DestructibleBox
   m_TagString: Object
   m_Icon: {fileID: 0}
@@ -90,6 +90,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
+  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -114,6 +115,7 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &3384382657198050281
 MeshCollider:
   m_ObjectHideFlags: 0

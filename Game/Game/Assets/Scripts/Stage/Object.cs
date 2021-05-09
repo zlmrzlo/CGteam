@@ -14,22 +14,34 @@ public enum gravityDirection
 public class Object : MonoBehaviour
 {
     private GameObject obj; // 해당 게임 오브젝트
-    [SerializeField]
     private gravityDirection gDirection;
 
     // Start is called before the first frame update
     void Start()
     {
         obj = this.gameObject;
+        obj.AddComponent<ConstantForce>();
         gDirection = gravityDirection.Down;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //checkGravity();
         changeGravity2();
     }
-   
+    private void checkGravity()
+    {
+        switch (gDirection)
+        {
+            case gravityDirection.Down:
+                obj.GetComponent<ConstantForce>().force = new Vector3(0, 0, 0);
+                break;
+            case gravityDirection.UP:
+                obj.GetComponent<ConstantForce>().force = new Vector3(0, 19.62f, 0);
+                break;
+        }
+    }
     private void changeGravity2()
     {
         switch (gDirection)

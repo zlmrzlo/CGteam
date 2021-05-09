@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7303079575778476903}
   - component: {fileID: 7294744684309868499}
   - component: {fileID: 7285231843460392613}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -90,7 +90,7 @@ GameObject:
   - component: {fileID: 7297595366936352259}
   - component: {fileID: 4289092532156311242}
   - component: {fileID: 7298446473679643632}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Crystalsv01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 7297760903950162191}
   - component: {fileID: 7295794569136119805}
   - component: {fileID: 7285308554085594287}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 7303143476348376779}
   - component: {fileID: 7291708042859657301}
   - component: {fileID: 7285607671094134523}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 7297707304948508835}
   - component: {fileID: 7294736929145674203}
   - component: {fileID: 7285803216400303543}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -397,7 +397,7 @@ GameObject:
   - component: {fileID: 7297709515621853699}
   - component: {fileID: 7295438140151621315}
   - component: {fileID: 7285673775393827301}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -475,7 +475,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7297575676153639995}
   - component: {fileID: 7262603187803766773}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Point light (9)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -568,7 +568,7 @@ GameObject:
   - component: {fileID: 7297869908416465291}
   - component: {fileID: 7295818568967331219}
   - component: {fileID: 7286180946548263717}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -647,7 +647,7 @@ GameObject:
   - component: {fileID: 7303098668417019317}
   - component: {fileID: 7295798097797072961}
   - component: {fileID: 7285316459805037331}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: BetterCrystal01 (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

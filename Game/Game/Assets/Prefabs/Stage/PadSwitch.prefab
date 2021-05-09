@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8738537264363259701}
   - component: {fileID: 8746487286548576697}
   - component: {fileID: 8778808402620386555}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PressurePadOuter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8736518435151239199}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PadSwitch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 8778988433139944179}
   - component: {fileID: 8734131867083528734}
   - component: {fileID: 1177434585069218958}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: PressurePadInner
   m_TagString: Untagged
   m_Icon: {fileID: 0}

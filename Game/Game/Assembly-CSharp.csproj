@@ -63,12 +63,24 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyAnimator.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyAudio.cs" />
+    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyController.cs" />
+    <Compile Include="Assets\Scripts\Game Manager\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\Helper Scripts\TagHolder.cs" />
     <Compile Include="Assets\Scripts\Item\SpearTrap.cs" />
     <Compile Include="Assets\Scripts\Item\Stalagmite.cs" />
     <Compile Include="Assets\Scripts\Item\smokeShell.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PickupObject.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Pickupable.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\AttackScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\GravityEffect.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\HealthScript.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerAttack.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerAxeWooshSound.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerFootsteps.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerSprintAndCrouch.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerStats.cs" />
     <Compile Include="Assets\Scripts\Stage\CrystalColor.cs" />
     <Compile Include="Assets\Scripts\Stage\DoorManager.cs" />
     <Compile Include="Assets\Scripts\Stage\GravityController.cs" />
@@ -76,11 +88,9 @@
     <Compile Include="Assets\Scripts\Stage\Object.cs" />
     <Compile Include="Assets\Scripts\Stage\PadSwitch.cs" />
     <Compile Include="Assets\Scripts\Stage\PlayerCamera.cs" />
-    <Compile Include="Assets\Scripts\Stage\Spring.cs" />
     <Compile Include="Assets\Scripts\Stage\SwitchManager.cs" />
     <Compile Include="Assets\Scripts\Stage\Teleporter.cs" />
     <Compile Include="Assets\Scripts\Stage\TouchSwitch.cs" />
-    <Compile Include="Assets\Scripts\Stage\Wind.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DragSlot.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Hotbar.cs" />
@@ -95,6 +105,9 @@
     <Compile Include="Assets\Scripts\UI Scripts\SlotToolTip.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Title.cs" />
+    <Compile Include="Assets\Scripts\Weapons Scripts\ArrowBowScript.cs" />
+    <Compile Include="Assets\Scripts\Weapons Scripts\WeaponHandler.cs" />
+    <Compile Include="Assets\Scripts\Weapons Scripts\WeaponManager.cs" />
     <Compile Include="Assets\UI\Script\Slide.cs" />
     <Compile Include="Assets\UI\Script\Togglescript.cs" />
     <None Include="Assets\Models\Stage\imported\SineVFX\PostProcessingV2\Shaders\StdLib.hlsl" />
@@ -366,7 +379,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
     <Reference Include="nunit.framework">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -714,31 +727,31 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.17f1/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline.Editor">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VSCode.Editor">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.UI">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.UI">
-      <HintPath>C:/Users/User/Documents/GitHub/CGteam/Game/Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+      <HintPath>C:/Users/user/Desktop/CGteam/Game/Game/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
