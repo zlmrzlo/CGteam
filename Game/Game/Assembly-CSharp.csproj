@@ -88,9 +88,11 @@
     <Compile Include="Assets\Scripts\Stage\Object.cs" />
     <Compile Include="Assets\Scripts\Stage\PadSwitch.cs" />
     <Compile Include="Assets\Scripts\Stage\PlayerCamera.cs" />
+    <Compile Include="Assets\Scripts\Stage\Spring.cs" />
     <Compile Include="Assets\Scripts\Stage\SwitchManager.cs" />
     <Compile Include="Assets\Scripts\Stage\Teleporter.cs" />
     <Compile Include="Assets\Scripts\Stage\TouchSwitch.cs" />
+    <Compile Include="Assets\Scripts\Stage\Wind.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\DragSlot.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Hotbar.cs" />

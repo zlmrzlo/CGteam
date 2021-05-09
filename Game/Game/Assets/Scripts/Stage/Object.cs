@@ -14,6 +14,7 @@ public enum gravityDirection
 public class Object : MonoBehaviour
 {
     private GameObject obj; // 해당 게임 오브젝트
+    [SerializeField]
     private gravityDirection gDirection;
 
     // Start is called before the first frame update
