@@ -2,11 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-
-public class GravityController : MonoBehaviour
+public class Wind : MonoBehaviour
 {
-    [SerializeField]
-    private gravityDirection changeTo;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,12 +13,11 @@ public class GravityController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         var obj = other.gameObject;
-        obj.GetComponent<Object>().changeGravity(changeTo);
-        Debug.Log("중력 변환!");
+        obj.GetComponent<Rigidbody>().AddForce(Vector3.up * 3.0f, ForceMode.Impulse);
     }
 }
