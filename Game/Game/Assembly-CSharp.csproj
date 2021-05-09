@@ -63,25 +63,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyAnimator.cs" />
-    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyAudio.cs" />
-    <Compile Include="Assets\Scripts\Enemy Scripts\EnemyController.cs" />
-    <Compile Include="Assets\Scripts\Game Manager\EnemyManager.cs" />
-    <Compile Include="Assets\Scripts\Helper Scripts\TagHolder.cs" />
     <Compile Include="Assets\Scripts\Item\SpearTrap.cs" />
     <Compile Include="Assets\Scripts\Item\Stalagmite.cs" />
     <Compile Include="Assets\Scripts\Item\smokeShell.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\AttackScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\Hand.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\HandController.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\HealthScript.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\MouseLook.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerAttack.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerAxeWooshSound.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerFootsteps.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerSprintAndCrouch.cs" />
-    <Compile Include="Assets\Scripts\Player Scripts\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PickupObject.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\Pickupable.cs" />
+    <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Stage\CrystalColor.cs" />
     <Compile Include="Assets\Scripts\Stage\DoorManager.cs" />
     <Compile Include="Assets\Scripts\Stage\GravityController.cs" />
@@ -106,9 +93,6 @@
     <Compile Include="Assets\Scripts\UI Scripts\SlotToolTip.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\SoundManager.cs" />
     <Compile Include="Assets\Scripts\UI Scripts\Title.cs" />
-    <Compile Include="Assets\Scripts\Weapons Scripts\ArrowBowScript.cs" />
-    <Compile Include="Assets\Scripts\Weapons Scripts\WeaponHandler.cs" />
-    <Compile Include="Assets\Scripts\Weapons Scripts\WeaponManager.cs" />
     <Compile Include="Assets\UI\Script\Slide.cs" />
     <Compile Include="Assets\UI\Script\Togglescript.cs" />
     <None Include="Assets\Models\Stage\imported\SineVFX\PostProcessingV2\Shaders\StdLib.hlsl" />
