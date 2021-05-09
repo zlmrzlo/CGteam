@@ -3892,6 +3892,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 570519707}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &572631008 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 881190442159261159, guid: f984d7feba60b2b4f9d715c28d6ff76b,
+    type: 3}
+  m_PrefabInstance: {fileID: 1617594250}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 306bece0a2f6c4e48b8d9fc01e5d8e2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &573417400 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: be7e78284823c324f8c967401fb2d544,
@@ -9186,6 +9198,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 24100000, guid: cf1f2ad4702c8cf47b91c4e91ddba862,
         type: 2}
+    - target: {fileID: 7317737096358574731, guid: 587020bb3b50f7b479d631c23ae0458b,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 587020bb3b50f7b479d631c23ae0458b, type: 3}
 --- !u!1001 &1268572589
@@ -13796,8 +13813,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemEffects: []
-  thePlayerStatus: {fileID: 0}
-  theSlotToolTip: {fileID: 0}
+  thePlayerStatus: {fileID: 1337034734}
+  theSlotToolTip: {fileID: 572631008}
 --- !u!4 &1922634673
 Transform:
   m_ObjectHideFlags: 0

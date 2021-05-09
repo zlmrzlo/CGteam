@@ -64,8 +64,9 @@ public class Inventory : MonoBehaviour
     {
         GameManager.isOpenInventory = false;
         inventoryBase.SetActive(false);
-        for(int i=0;i<slots.Length;i++)
-            slots[i].theItemEffectDatabase.HideToolTip();
+        for (int i = 0; i < slots.Length; i++)
+            if (slots[i].isTooltipOn == true) 
+                slots[i].theItemEffectDatabase.HideToolTip();
     }
 
     public void AcquireItem(Item _item, int _count = 1)

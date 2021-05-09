@@ -10,6 +10,7 @@ public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler, IP
     public Item item; // 획득한 아이템.
     public int itemCount; // 획득한 아이템의 개수.
     public Image itemImage; // 아이템의 이미지.
+    public bool isTooltipOn = false;
 
     // 필요한 컴포넌트.
     [SerializeField] public Text textCount;
@@ -131,12 +132,19 @@ public class Slot : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler, IP
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (item != null)
+        {
             theItemEffectDatabase.ShowToolTop(item, transform.position);
+            isTooltipOn = true;
+        }
     }
 
     // 슬롯에서 빠져나갈 때 발동.
     public void OnPointerExit(PointerEventData eventData)
     {
-        theItemEffectDatabase.HideToolTip();
+        if(isTooltipOn == true)
+        {
+            theItemEffectDatabase.HideToolTip();
+            isTooltipOn = false;
+        }
     }
 }

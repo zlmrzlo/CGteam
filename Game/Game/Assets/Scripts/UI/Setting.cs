@@ -65,7 +65,7 @@ public class Setting : MonoBehaviour
             mouseLook = FindObjectOfType<PlayerController>();
 
             // Load Brightness
-            RenderSettings.ambientLight = new Color(settingData.brightness, settingData.brightness, settingData.brightness, 1);
+            RenderSettings.ambientIntensity = settingData.brightness;
             brightness.value = settingData.brightness;
             // Load BGM Volume
             bgmMixer.SetFloat("BGMVolume", Mathf.Log10(settingData.bgmVolume * 2) * 20);
@@ -103,7 +103,7 @@ public class Setting : MonoBehaviour
     }
     public void SetBrightness(float sliderValue)
     {
-        RenderSettings.ambientLight = new Color(sliderValue, sliderValue, sliderValue, 1);
+        RenderSettings.ambientIntensity = sliderValue;
         settingData.brightness = sliderValue;
     }
 
@@ -148,8 +148,8 @@ public class Setting : MonoBehaviour
 
     public void ResetBrightness()
     {
-        brightness.value = 0f;
-        settingData.brightness = 0f;
+        brightness.value = 1f;
+        settingData.brightness = 1f;
     }
     public void ResetBGMVolume()
     {
