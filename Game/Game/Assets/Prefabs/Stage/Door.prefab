@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6782621106744379349}
   - component: {fileID: 6787112492460162663}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: Door
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -64,7 +64,7 @@ GameObject:
   - component: {fileID: 6793289653021427295}
   - component: {fileID: 6801782788930279947}
   - component: {fileID: 6833346115608087329}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: SmallDoorFrame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -133,7 +132,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!64 &6833346115608087329
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -161,7 +159,7 @@ GameObject:
   - component: {fileID: 6801178023938290145}
   - component: {fileID: 6841620219916466677}
   - component: {fileID: 6834687537360309829}
-  m_Layer: 16
+  m_Layer: 0
   m_Name: SmallDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +203,6 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
   m_RenderingLayerMask: 4294967295
   m_RendererPriority: 0
   m_Materials:
@@ -230,7 +227,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
 --- !u!54 &6841620219916466677
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -300,8 +296,7 @@ AudioSource:
   m_GameObject: {fileID: 6789085042122637187}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 243921076603134450, guid: 248799cb4acba48f7b3ee842a80f788c,
-    type: 2}
+  OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 6a87f3a45f97b4b29b8356bbd8c7288f, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1

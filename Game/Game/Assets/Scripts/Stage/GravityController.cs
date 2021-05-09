@@ -22,5 +22,6 @@ public class GravityController : MonoBehaviour
     {
         var obj = other.gameObject;
         obj.GetComponent<Object>().changeGravity(changeTo);
+        Debug.Log("중력 변환!");
     }
 }
