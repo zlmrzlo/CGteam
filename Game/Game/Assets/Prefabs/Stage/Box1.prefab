@@ -45,6 +45,7 @@ GameObject:
   - component: {fileID: 3384382657198050281}
   - component: {fileID: 3374376674167063883}
   - component: {fileID: 1746626412351959188}
+  - component: {fileID: 7065890410195609305}
   - component: {fileID: 1633938555559384163}
   m_Layer: 0
   m_Name: DestructibleBox
@@ -157,6 +158,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.5928347, y: 1.5048866, z: 1.5928345}
   m_Center: {x: 0.0032573938, y: 0.7475581, z: 0}
+--- !u!114 &7065890410195609305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3319763255671310043}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 529453dfbb1b30d4694c97366ea94e05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1633938555559384163
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -169,3 +182,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 409e69b83591dee4895283418be97d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gDirection: 0
