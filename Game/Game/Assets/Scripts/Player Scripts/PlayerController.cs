@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
         // 쿼터니언 회전값 확인용
         //Vector3 characterRotationX = -transform.right;
         //myRigid.MoveRotation(myRigid.rotation * Quaternion.Euler(characterRotationX));
-        Debug.Log(myRigid.rotation);
+        //Debug.Log(myRigid.rotation);
     }
 
     private void TryCrouch()
