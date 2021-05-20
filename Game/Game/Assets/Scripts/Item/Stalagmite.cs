@@ -6,10 +6,18 @@ public class Stalagmite : MonoBehaviour
 {
     public GameObject Player;
     public GameObject Stone;
+    public Camera cam;
     private float Dist;
 
     [SerializeField]
-    float distance;
+    private float distance;
+
+    [SerializeField]
+    private int damage;
+
+    [SerializeField]
+    private int knockbackPower;
+
 
     void Update()
     {
@@ -23,4 +31,15 @@ public class Stalagmite : MonoBehaviour
             Stone.GetComponent<Rigidbody>().useGravity = true;
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.transform.name == "Player")
+        {
+            collision.transform.GetComponent<StatusController>().DecreaseHP(damage);
+            Vector3 reactVec = collision.transform.position - transform.position;
+            reactVec = reactVec.normalized;
+            collision.transform.GetComponent<Rigidbody>().AddForce(reactVec * knockbackPower, ForceMode.Impulse);
+            cam.GetComponent<CameraShake>().Shake();
+        }
+    }
 }
