@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // 기본값은 false이지만 한눈에 알아볼 수 있도록 하기 위해서 초기화
     private bool isRun = false;
     private bool isCrouch = false;
-    private bool isGround = true;
+    private bool isGround = false;
 
     // 앉았을 때 얼마나 앉을지 결정하는 변수
     [SerializeField]
@@ -56,9 +56,15 @@ public class PlayerController : MonoBehaviour
     bool rightGravity = false;
     bool forwardGravity = false;
 
+    AudioSource footstep_Sound;
+    private float accumulated_Distance;
+    public float step_Distance = 2.0f;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        footstep_Sound = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         capsuleCollider = GetComponent<CapsuleCollider>();
@@ -72,23 +78,20 @@ public class PlayerController : MonoBehaviour
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        if (GameManager.canPlayerMove)
-        {
-            Gravity();
-            IsGround();
-            TryJump();
-            TryRun();
-            TryCrouch();
-            Move();
-            CameraRotation();
-            CharacterRotation();
-            // 위, 아래
-            CharaterRotationTryInverse();
-            // 오른쪽, 왼쪽
-            CharaterRotationTrySideInverse();
-            // 앞, 뒤
-            CharaterRotationTryFrontInverse();
-        }
+        Gravity();
+        IsGround();
+        TryJump();
+        TryRun();
+        TryCrouch();
+        Move();
+        CameraRotation();
+        CharacterRotation();
+        // 위, 아래
+        CharaterRotationTryInverse();
+        // 오른쪽, 왼쪽
+        CharaterRotationTrySideInverse();
+        // 앞, 뒤
+        CharaterRotationTryFrontInverse();
     }
 
     private void CharaterRotationTryFrontInverse()
@@ -250,7 +253,7 @@ public class PlayerController : MonoBehaviour
         // extents는 캡슐의 반의 길이를 의미한다.
         // 백업용
         //isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
-        isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 100f);
+        isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 2f);
         
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
@@ -346,6 +349,29 @@ public class PlayerController : MonoBehaviour
 
         // 델타 타임을 통해서 뚝뚝 끊기는 화면을 부드럽게 만들어준다.
         myRigid.MovePosition(transform.position + velocity * Time.deltaTime);
+
+        if (velocity.sqrMagnitude > 0 && isGround)
+        {
+
+            // accumulated distance is the value how far can we go 
+            // e.g. make a step or sprint, or move while crouching
+            // until we play the footstep sound
+            accumulated_Distance += Time.deltaTime;
+
+            if (accumulated_Distance > step_Distance)
+            {
+
+                footstep_Sound.volume = Random.Range(0.1f, 0.5f);
+                footstep_Sound.Play();
+
+                accumulated_Distance = 0f;
+            }
+        }
+        else
+        {
+            accumulated_Distance = 0f;
+        }
+
     }
 
     // 캐릭터 회전을 나타내는 함수

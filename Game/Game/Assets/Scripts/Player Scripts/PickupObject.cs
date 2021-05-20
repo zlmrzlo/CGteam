@@ -9,7 +9,21 @@ public class PickupObject : MonoBehaviour
     bool carrying;
     GameObject carriedObject;
     public float distance;
-    public float smooth;
+    public float smooth; 
+    Pickupable p;
+
+    Animator animator;
+
+    private void Start()
+    {
+        animator = GetComponentInChildren<Animator>();
+
+        //애니메이터 제대로 가지고 왔는지 확인
+        if (animator != null)
+        {
+            Debug.Log("hit");
+        }
+    }
 
     // Update is called once per frame
     void Update()
@@ -35,7 +49,7 @@ public class PickupObject : MonoBehaviour
     // 물건을 캐릭터 앞으로 가지고 옴
     void carry(GameObject o)
     {
-        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + (mainCamera.transform.forward - 0.2f * mainCamera.transform.up) * distance, Time.deltaTime * smooth);
+        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + (0.8f * mainCamera.transform.forward - 0.3f * mainCamera.transform.up) * distance, Time.deltaTime * smooth);
     }
 
     void pickup()
@@ -48,22 +62,31 @@ public class PickupObject : MonoBehaviour
             int x = Screen.width / 2;
             int y = Screen.height / 2;
 
+
             // 스크린의 정중앙에 빛을 쏴서 맞추는 오브젝트를 들게 한다.
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(x, y));
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                Debug.Log("OK2");
-                Pickupable p = hit.collider.GetComponentInChildren<Pickupable>();
+                //Debug.Log("OK2");
+                p = hit.collider.GetComponentInChildren<Pickupable>();
                 if (p != null)
                 {
-                    Debug.Log("OK3");
-                    carrying = true;
-                    carriedObject = p.gameObject;
-                    p.GetComponent<Rigidbody>().isKinematic = true;
+                    animator.SetBool("Hold", true);
+                    StartCoroutine(PickDelay());
                 }
             }
         }
+    }
+
+    IEnumerator PickDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        carrying = true;
+        carriedObject = p.gameObject;
+        p.GetComponent<Rigidbody>().isKinematic = true;
+        p.GetComponent<MeshCollider>().enabled = false;
+        p.GetComponent<BoxCollider>().enabled = false;
     }
 
     void checkDrop()
@@ -77,7 +100,10 @@ public class PickupObject : MonoBehaviour
     void dropObject()
     {
         carrying = false;
+        animator.SetBool("Hold", false);
         carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+        p.GetComponent<MeshCollider>().enabled = true;
+        p.GetComponent<BoxCollider>().enabled = true;
         carriedObject = null;
     }
 }
