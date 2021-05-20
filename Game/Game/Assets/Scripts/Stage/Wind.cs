@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class Wind : MonoBehaviour
 {
-    [SerializeField] private Transform nVec;
-    [SerializeField] private Transform zeroPos;
-    private Vector3 normal;
     // Start is called before the first frame update
+    private Vector3 direction;
+    private Vector3 position;
+    private Vector3 normal;
     void Start()
     {
+        normal = transform.GetChild(0).position;
+        position = transform.position;
+        direction = (normal - position).normalized;
     }
 
     // Update is called once per frame
@@ -19,8 +22,7 @@ public class Wind : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        var obj = other.gameObject;
-        normal = (nVec.position - zeroPos.position).normalized;
-        obj.GetComponent<Rigidbody>().AddForce(normal * 3.0f, ForceMode.Impulse);
+        var rigid = other.gameObject.GetComponent<Rigidbody>();
+        rigid.AddForce(direction * 3.0f, ForceMode.Impulse);
     }
 }
