@@ -22,7 +22,7 @@ public class Wind : MonoBehaviour
     }
     private void OnTriggerStay(Collider other)
     {
-        var obj = other.gameObject;
-        obj.GetComponent<Rigidbody>().AddForce(direction * 3.0f, ForceMode.Impulse);
+        var rigid = other.gameObject.GetComponent<Rigidbody>();
+        rigid.AddForce(direction * 3.0f, ForceMode.Impulse);
     }
 }
