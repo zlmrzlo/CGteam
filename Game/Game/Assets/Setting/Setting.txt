@@ -1,1 +1,1 @@
-{"brightness":0.0,"bgmVolume":0.5,"effectVolume":0.5,"mouseSensitivity":1.0,"quialityIndex":3,"isFullscreen":true,"resolutionIndex":-1,"resolution":"320 x 240"}
+{"brightness":0.0,"bgmVolume":0.5,"effectVolume":0.5,"mouseSensitivity":1.0,"quialityIndex":3,"isFullscreen":true,"resolutionIndex":23,"resolution":"2560 x 1440"}

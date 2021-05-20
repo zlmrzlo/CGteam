@@ -78,20 +78,23 @@ public class PlayerController : MonoBehaviour
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        Gravity();
-        IsGround();
-        TryJump();
-        TryRun();
-        TryCrouch();
-        Move();
-        CameraRotation();
-        CharacterRotation();
-        // 위, 아래
-        CharaterRotationTryInverse();
-        // 오른쪽, 왼쪽
-        CharaterRotationTrySideInverse();
-        // 앞, 뒤
-        CharaterRotationTryFrontInverse();
+        if(GameManager.canPlayerMove)
+        {
+            Gravity();
+            IsGround();
+            TryJump();
+            TryRun();
+            TryCrouch();
+            Move();
+            CameraRotation();
+            CharacterRotation();
+            // 위, 아래
+            CharaterRotationTryInverse();
+            // 오른쪽, 왼쪽
+            CharaterRotationTrySideInverse();
+            // 앞, 뒤
+            CharaterRotationTryFrontInverse();
+        }
     }
 
     private void CharaterRotationTryFrontInverse()
