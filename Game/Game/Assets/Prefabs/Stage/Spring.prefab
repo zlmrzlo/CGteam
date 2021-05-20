@@ -33,15 +33,21 @@ Transform:
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.25}
   m_Children:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - {fileID: 1966140982111934305}
   - {fileID: 4244031433598843353}
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   - {fileID: 3016963410785207500}
 =======
   - {fileID: 1966140982111934305}
   - {fileID: 4244031433598843353}
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -133,10 +139,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   nVec: {fileID: 1966140982111934305}
   zeroPos: {fileID: 4244031433598843353}
 --- !u!1 &5143272901207279095
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 --- !u!1 &3345295026825384194
 =======
@@ -144,6 +153,9 @@ MonoBehaviour:
   zeroPos: {fileID: 4244031433598843353}
 --- !u!1 &5143272901207279095
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 GameObject:
   m_ObjectHideFlags: 0
@@ -153,10 +165,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   - component: {fileID: 1966140982111934305}
   m_Layer: 0
   m_Name: normalVector
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   - component: {fileID: 3016963410785207500}
   m_Layer: 0
@@ -166,6 +181,9 @@ GameObject:
   m_Layer: 0
   m_Name: normalVector
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,13 +191,19 @@ GameObject:
   m_StaticEditorFlags: 0
   m_IsActive: 1
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 --- !u!4 &1966140982111934305
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
 --- !u!4 &3016963410785207500
 =======
 --- !u!4 &1966140982111934305
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 Transform:
   m_ObjectHideFlags: 0
@@ -187,10 +211,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_GameObject: {fileID: 5143272901207279095}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
   m_GameObject: {fileID: 3345295026825384194}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
@@ -200,6 +227,9 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 1, z: 0}
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -207,6 +237,11 @@ Transform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
 =======
 <<<<<<< HEAD
 =======
@@ -242,6 +277,10 @@ Transform:
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+>>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+>>>>>>> Stashed changes
 =======
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
 >>>>>>> Stashed changes

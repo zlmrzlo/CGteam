@@ -14,7 +14,10 @@ public class Spring : MonoBehaviour
     void Start()
     {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
+=======
+>>>>>>> Stashed changes
 <<<<<<< HEAD
         normal = transform.GetChild(0).position;
         position = transform.position;
@@ -22,6 +25,9 @@ public class Spring : MonoBehaviour
         
 =======
 >>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
     }
 
@@ -35,9 +41,21 @@ public class Spring : MonoBehaviour
         var obj = other.gameObject;
         var rigid = obj.GetComponent<Rigidbody>();
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         normal = (nVec.position - zeroPos.position).normalized;
         rigid.constraints = RigidbodyConstraints.FreezeRotation;
         rigid.AddForce(normal * 200.0f , ForceMode.Impulse);
+=======
+<<<<<<< HEAD
+        
+        rigid.constraints = RigidbodyConstraints.FreezeRotation;
+        rigid.AddForce(direction * 200.0f , ForceMode.Impulse);
+=======
+        normal = (nVec.position - zeroPos.position).normalized;
+        rigid.constraints = RigidbodyConstraints.FreezeRotation;
+        rigid.AddForce(normal * 200.0f , ForceMode.Impulse);
+>>>>>>> 066dfb5d008b6fcf9ea5602eb0236c823ee52e62
+>>>>>>> Stashed changes
 =======
 <<<<<<< HEAD
         
