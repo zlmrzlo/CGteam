@@ -78,7 +78,7 @@ public class PlayerController : MonoBehaviour
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        if(GameManager.canPlayerMove)
+        if (GameManager.canPlayerMove)
         {
             Gravity();
             IsGround();
