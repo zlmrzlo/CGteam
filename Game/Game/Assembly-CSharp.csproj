@@ -73,8 +73,11 @@
     <Compile Include="Assets\Scripts\Player Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Stage\CrystalColor.cs" />
     <Compile Include="Assets\Scripts\Stage\DoorManager.cs" />
+    <Compile Include="Assets\Scripts\Stage\GoNextStage.cs" />
     <Compile Include="Assets\Scripts\Stage\GravityController.cs" />
+    <Compile Include="Assets\Scripts\Stage\GravityReset.cs" />
     <Compile Include="Assets\Scripts\Stage\LightManager.cs" />
+    <Compile Include="Assets\Scripts\Stage\MovingPlatform.cs" />
     <Compile Include="Assets\Scripts\Stage\Object.cs" />
     <Compile Include="Assets\Scripts\Stage\PadSwitch.cs" />
     <Compile Include="Assets\Scripts\Stage\PlayerCamera.cs" />

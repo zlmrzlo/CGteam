@@ -160,6 +160,7 @@ public class PlayerController : MonoBehaviour
     private void Gravity()
     {
         // 캐릭터의 아래 방향으로 중력을 작용시킴
+        if(upGravity || rightGravity || forwardGravity)
         myRigid.velocity -= transform.up;
         //Debug.Log(myRigid.velocity);
     }
