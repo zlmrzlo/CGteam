@@ -5,16 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public string sceneName = "Stage";
     [SerializeField] private GameObject BaseUI;
     [SerializeField] private GameObject SettingUI;
     [SerializeField] private SaveAndLoad theSNL;
+    private PlayerController player;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        if(RestartInfo.isRestart)
+        {
+            player = FindObjectOfType<PlayerController>();
+            player.transform.position = RestartInfo.resetPosition;
+            player.transform.eulerAngles = RestartInfo.resetRotation;
+            RestartInfo.isRestart = false;
+        }
     }
-
-    // Update is called once per frame
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
@@ -31,15 +38,30 @@ public class PauseMenu : MonoBehaviour
         BaseUI.SetActive(true);
         Time.timeScale = 0f;
     }
-    public void CallSetting()
-    {
-        SettingUI.SetActive(true);
-    }
     public void CloseMenu()
     {
         GameManager.isPause = false;
         BaseUI.SetActive(false);
         Time.timeScale = 1f;
+    }
+    public void ClickRestart()
+    {
+        RestartInfo.isRestart = true;
+        SceneManager.LoadScene(sceneName);
+        GameManager.isPause = false;
+        Time.timeScale = 1f;
+    }
+    
+    IEnumerator RestartCoroutine()
+    {
+        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
+        while (!operation.isDone)
+            yield return null;
+    }
+
+    public void CallSetting()
+    {
+        SettingUI.SetActive(true);
     }
     public void ClickSave()
     {
@@ -49,6 +71,6 @@ public class PauseMenu : MonoBehaviour
     {
         GameManager.isPause = false;
         Time.timeScale = 1f;
-        SceneManager.LoadScene("New Scene");
+        SceneManager.LoadScene("Title");
     }
 }

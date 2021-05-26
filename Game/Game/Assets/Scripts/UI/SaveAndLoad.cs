@@ -19,7 +19,7 @@ public class SaveAndLoad : MonoBehaviour
 
     private string SAVE_DATA_DIRECTORY;
     private string SAVE_FILENAME = "/SaveFile.txt";
-    private CharacterController player;
+    private PlayerController player;
 
 
     private Inventory inven;
@@ -33,7 +33,7 @@ public class SaveAndLoad : MonoBehaviour
 
     public void SaveData()
     {
-        player = FindObjectOfType<CharacterController>();
+        player = FindObjectOfType<PlayerController>();
         inven = FindObjectOfType<Inventory>();
 
         saveData.playerPos = player.transform.position;
@@ -58,7 +58,7 @@ public class SaveAndLoad : MonoBehaviour
         {
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
-            player = FindObjectOfType<CharacterController>();
+            player = FindObjectOfType<PlayerController>();
             inven = FindObjectOfType<Inventory>();
 
             player.transform.position = saveData.playerPos;
