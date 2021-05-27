@@ -84,11 +84,11 @@ public class Setting : MonoBehaviour
             Screen.fullScreen = settingData.isFullscreen;
             fullscreenToggle.isOn = settingData.isFullscreen;
             // Load Resolution if possible
-            if (settingData.resolutionIndex != -1)
-                currentResolutionIndex = settingData.resolutionIndex;
-            settingData.resolutionIndex = currentResolutionIndex;
-            settingData.resolution = resolutions[currentResolutionIndex].width + " x " +
-                resolutions[currentResolutionIndex].height;
+            //if (settingData.resolutionIndex != -1)
+            //    currentResolutionIndex = settingData.resolutionIndex;
+            //settingData.resolutionIndex = currentResolutionIndex;
+            //settingData.resolution = resolutions[currentResolutionIndex].width + " x " +
+            //    resolutions[currentResolutionIndex].height;
         }
         else
         {

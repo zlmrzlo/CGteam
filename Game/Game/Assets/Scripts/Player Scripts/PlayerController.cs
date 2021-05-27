@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
     // 스크립트가 들어가는 컴포넌트에 있는 리지드바디를 
     // 가지고 올 수 있도록 변수 선언
     private Rigidbody myRigid;
+    private GameObject player;
 
     // 마우스를 얼마나 민감하게 움직일 것인지 설정한다.
     [SerializeField]
@@ -68,7 +69,8 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         capsuleCollider = GetComponent<CapsuleCollider>();
-        myRigid = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
+        myRigid = player.GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
         applyCrouchPosY = originPosY;
@@ -78,20 +80,23 @@ public class PlayerController : MonoBehaviour
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        Gravity();
-        IsGround();
-        TryJump();
-        TryRun();
-        TryCrouch();
-        Move();
-        CameraRotation();
-        CharacterRotation();
-        // 위, 아래
-        CharaterRotationTryInverse();
-        // 오른쪽, 왼쪽
-        CharaterRotationTrySideInverse();
-        // 앞, 뒤
-        CharaterRotationTryFrontInverse();
+        if (GameManager.canPlayerMove)
+        {
+            //Gravity();
+            IsGround();
+            TryJump();
+            TryRun();
+            TryCrouch();
+            Move();
+            CameraRotation();
+            CharacterRotation();
+            // 위, 아래
+            CharaterRotationTryInverse();
+            // 오른쪽, 왼쪽
+            CharaterRotationTrySideInverse();
+            // 앞, 뒤
+            CharaterRotationTryFrontInverse();
+        }
     }
 
     private void CharaterRotationTryFrontInverse()

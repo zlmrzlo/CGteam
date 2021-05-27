@@ -6,7 +6,14 @@ using UnityEngine.UI;
 public class ProgressBarController : MonoBehaviour
 {
     [SerializeField] private GameObject progressObject;
+    [SerializeField] private GameObject resetPosObj;
+    //private PauseMenu pauseMenu;
     [SerializeField] private float position;
+
+    private void Start()
+    {
+        //pauseMenu = FindObjectOfType<PauseMenu>();
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +21,18 @@ public class ProgressBarController : MonoBehaviour
         {
             progressObject.transform.localPosition = new Vector3(position, 0, 0);
             StartCoroutine("Blink");
+        }
+    }
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            if (resetPosObj)
+            {
+                RestartInfo.resetPosition = resetPosObj.transform.position;
+                RestartInfo.resetRotation = resetPosObj.transform.eulerAngles;
+                Destroy(resetPosObj);
+            }
         }
     }
     IEnumerator Blink()
