@@ -14,9 +14,11 @@ public class MovingPlatform : MonoBehaviour
     private int turnOnSwitch;
     private bool switchOn;
     private bool goToFinish;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.FindWithTag("Player");
         start = transform.position;
         finish = transform.GetChild(0).position;
         direction = (finish - start).normalized;
@@ -72,5 +74,19 @@ public class MovingPlatform : MonoBehaviour
             }
         }
 
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject == player)
+        {
+            player.transform.parent = transform;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject == player)
+        {
+            player.transform.parent = null;
+        }
     }
 }

@@ -12,7 +12,7 @@ public class DoorManager : MonoBehaviour
     private float doorSpeed;
     private Vector3 doorFinishPos;
 
-    private bool openDoor = false;
+    //private bool openDoor = false;
     private int turnOnSwitch;
 
     void Start()
