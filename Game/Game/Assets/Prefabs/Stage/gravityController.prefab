@@ -13,8 +13,6 @@ GameObject:
   - component: {fileID: 8039933215987469452}
   - component: {fileID: 530725457307904567}
   - component: {fileID: 6643198200909598785}
-  - component: {fileID: 5674173788940278555}
-  - component: {fileID: 8971533592060577676}
   - component: {fileID: 2567454204931677307}
   m_Layer: 0
   m_Name: gravityController
@@ -95,8 +93,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 9.943237, y: 1.6111922, z: 10.466309}
-  m_Center: {x: 0.086517334, y: 0.29513508, z: 0.24414062}
+  m_Size: {x: 9.943237, y: 0.827052, z: 10.466309}
+  m_Center: {x: 0.086517334, y: 0.6872052, z: 0.24414062}
 --- !u!64 &6643198200909598785
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -111,32 +109,6 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 560f1caa2c38a3244b43e6e52d7b52cb, type: 3}
---- !u!65 &5674173788940278555
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8039933215989731916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 9.987793, y: 0.769937, z: 16.130152}
-  m_Center: {x: 0.06729126, y: -0.12549248, z: 0.022473335}
---- !u!65 &8971533592060577676
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8039933215989731916}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 16.175098, y: 0.769937, z: 10.480652}
-  m_Center: {x: 0, y: -0.12549248, z: 0.24673462}
 --- !u!114 &2567454204931677307
 MonoBehaviour:
   m_ObjectHideFlags: 0

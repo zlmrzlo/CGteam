@@ -38,39 +38,35 @@ public class Object : MonoBehaviour
         {
             case gravityDirection.Down:
                 myRigid.AddForce(Vector3.up * 0);
-                
-                
                 break;
             case gravityDirection.UP:
-                myRigid.AddForce(Vector3.up * 19.62f, ForceMode.Acceleration);
-                
+                myRigid.AddForce(Vector3.up * 19.62f, ForceMode.Acceleration);     
                 break;
             case gravityDirection.Right:
                 myRigid.AddForce(Vector3.up * 9.81f, ForceMode.Acceleration);
                 myRigid.AddForce(Vector3.right * 9.81f, ForceMode.Acceleration);
-               
                 break;
             case gravityDirection.Left:
                 myRigid.AddForce(Vector3.up * 9.81f, ForceMode.Acceleration);
                 myRigid.AddForce(Vector3.left * 9.81f, ForceMode.Acceleration);
-             
                 break;
             case gravityDirection.Forward:
                 myRigid.AddForce(Vector3.up * 9.81f, ForceMode.Acceleration);
                 myRigid.AddForce(Vector3.forward * 9.81f, ForceMode.Acceleration);
-               
                 break;
             case gravityDirection.Beheind:
                 myRigid.AddForce(Vector3.up * 9.81f, ForceMode.Acceleration);
                 myRigid.AddForce(Vector3.back * 9.81f, ForceMode.Acceleration);
-          
                 break;
         }
     }
     public void changeGravity(gravityDirection dir)
     {
-        gDirection = dir;
-        changeDirection();
+        if(gDirection != dir)
+        {
+            gDirection = dir;
+            changeDirection();
+        }
     }
     public void changeDirection()
     {
