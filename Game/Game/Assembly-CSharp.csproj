@@ -63,6 +63,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Item\CameraShake.cs" />
     <Compile Include="Assets\Scripts\Item\SpearTrap.cs" />
     <Compile Include="Assets\Scripts\Item\Stalagmite.cs" />
     <Compile Include="Assets\Scripts\Item\lava.cs" />
@@ -94,6 +95,7 @@
     <Compile Include="Assets\Scripts\UI\PauseMenu.cs" />
     <Compile Include="Assets\Scripts\UI\PreviewObject.cs" />
     <Compile Include="Assets\Scripts\UI\ProgressBarController.cs" />
+    <Compile Include="Assets\Scripts\UI\RestartInfo.cs" />
     <Compile Include="Assets\Scripts\UI\SaveAndLoad.cs" />
     <Compile Include="Assets\Scripts\UI\Setting.cs" />
     <Compile Include="Assets\Scripts\UI\Slot.cs" />
