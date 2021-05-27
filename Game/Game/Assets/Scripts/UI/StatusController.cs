@@ -8,7 +8,7 @@ public class StatusController : MonoBehaviour
 
     // 체력
     [SerializeField] private int hp;
-    public static float currentHp;
+    private int currentHp;
 
     // 스태미나
     [SerializeField] private int mp;
