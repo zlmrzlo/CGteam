@@ -12,7 +12,7 @@ public class StatusController : MonoBehaviour
 
     // 스태미나
     [SerializeField] private int mp;
-    private int currentMp;
+    public static float currentMp;
 
     // 필요한 이미지
     [SerializeField] private Image[] images_GaugeFront;
@@ -145,7 +145,7 @@ public class StatusController : MonoBehaviour
         lerpTimer[MP] = 0f;
     }
 
-    public int GetCurrentMP()
+    public float GetCurrentMP()
     {
         return currentMp;
     }

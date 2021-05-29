@@ -28,15 +28,18 @@ public class PickupObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (carrying)
+        if (!GameManager.isPause)
         {
-            carry(carriedObject);
-            checkDrop();
-            //rotateObject();
-        }
-        else
-        {
-            pickup();
+            if (carrying)
+            {
+                carry(carriedObject);
+                checkDrop();
+                //rotateObject();
+            }
+            else
+            {
+                pickup();
+            }
         }
     }
 
