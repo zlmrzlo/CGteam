@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     private float originPosY;
     private float applyCrouchPosY;
 
+    private float deathRotX = -90;
+    private float originRotX;
+    private float applyDeathRotX;
+
     // 땅 착지 여부
     private CapsuleCollider capsuleCollider;
 
@@ -57,14 +61,18 @@ public class PlayerController : MonoBehaviour
     bool rightGravity = false;
     bool forwardGravity = false;
 
+    bool mouseLock = false;
+
     AudioSource footstep_Sound;
     private float accumulated_Distance;
     public float step_Distance = 2.0f;
 
+    StatusController statusController;
 
     // Start is called before the first frame update
     void Start()
     {
+        statusController = GetComponent<StatusController>();
         footstep_Sound = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -73,7 +81,9 @@ public class PlayerController : MonoBehaviour
         myRigid = player.GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
+        originRotX = theCamera.transform.localRotation.x;
         applyCrouchPosY = originPosY;
+        applyDeathRotX = -90f;
     }
 
     // Update is called once per frame
@@ -83,13 +93,17 @@ public class PlayerController : MonoBehaviour
         if (GameManager.canPlayerMove)
         {
             //Gravity();
-            IsGround();
+            IsGround(); 
+            IsDeath();
             TryJump();
             TryRun();
             TryCrouch();
-            Move();
-            CameraRotation();
-            CharacterRotation();
+            if (!mouseLock)
+            {
+                Move();
+                CameraRotation();
+                CharacterRotation();
+            }
             // 위, 아래
             CharaterRotationTryInverse();
             // 오른쪽, 왼쪽
@@ -97,6 +111,35 @@ public class PlayerController : MonoBehaviour
             // 앞, 뒤
             CharaterRotationTryFrontInverse();
         }
+    }
+
+    private void IsDeath()
+    {
+        if (StatusController.currentHp == 0)
+        {
+            mouseLock = true;
+            StartCoroutine(DeathCoroutine());
+            myRigid.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        float rotX = theCamera.transform.localRotation.x;
+        Debug.Log(applyDeathRotX);
+        int count = 0;
+
+        while (rotX != applyDeathRotX)
+        {
+            count++;
+            rotX = Mathf.Lerp(rotX, -90, 0.01f);
+            theCamera.transform.localRotation = Quaternion.Euler(rotX, 0f, 0f);
+            if (count > 300)
+                break;
+            // 1 프레임마다 실행시킨다.
+            yield return null;
+        }
+        theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
     }
 
     private void CharaterRotationTryFrontInverse()
