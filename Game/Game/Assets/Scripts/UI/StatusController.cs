@@ -149,4 +149,9 @@ public class StatusController : MonoBehaviour
     {
         return currentMp;
     }
+
+    public float GetCurrentHP()
+    {
+        return currentHp;
+    }
 }
