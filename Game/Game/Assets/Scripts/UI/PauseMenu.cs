@@ -47,16 +47,9 @@ public class PauseMenu : MonoBehaviour
     public void ClickRestart()
     {
         RestartInfo.isRestart = true;
-        SceneManager.LoadScene(sceneName);
         GameManager.isPause = false;
+        SceneManager.LoadScene(sceneName);
         Time.timeScale = 1f;
-    }
-    
-    IEnumerator RestartCoroutine()
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneName);
-        while (!operation.isDone)
-            yield return null;
     }
 
     public void CallSetting()

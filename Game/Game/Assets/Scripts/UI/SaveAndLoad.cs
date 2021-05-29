@@ -29,6 +29,8 @@ public class SaveAndLoad : MonoBehaviour
     private GameObject[] boxes;
 
     private Inventory inven;
+    private StatusController statusController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,11 +43,12 @@ public class SaveAndLoad : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         Object playerObj = player.GetComponent<Object>();
+        statusController = player.GetComponent<StatusController>();
         inven = FindObjectOfType<Inventory>();
         boxes = GameObject.FindGameObjectsWithTag("Object");
 
-        saveData.playerHP = StatusController.currentHp;
-        saveData.playerMP = StatusController.currentMp;
+        saveData.playerHP = statusController.currentHp;
+        saveData.playerMP = statusController.currentMp;
         saveData.playerPos = player.transform.position;
         saveData.playerRot = player.transform.eulerAngles;
         saveData.playerGDir = playerObj.gDirection;
@@ -76,12 +79,13 @@ public class SaveAndLoad : MonoBehaviour
             string loadJson = File.ReadAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME);
             saveData = JsonUtility.FromJson<SaveData>(loadJson);
             player = GameObject.FindWithTag("Player");
+            statusController = player.GetComponent<StatusController>();
             Object playerObj = player.GetComponent<Object>();
             inven = FindObjectOfType<Inventory>();
             boxes = GameObject.FindGameObjectsWithTag("Object");
 
-            StatusController.currentHp = saveData.playerHP;
-            StatusController.currentMp = saveData.playerMP;
+            statusController.currentHp = saveData.playerHP;
+            statusController.currentMp = saveData.playerMP;
             player.transform.position = saveData.playerPos;
             player.transform.eulerAngles = saveData.playerRot;
             playerObj.gDirection = saveData.playerGDir;

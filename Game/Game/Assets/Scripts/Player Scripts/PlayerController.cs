@@ -68,6 +68,7 @@ public class PlayerController : MonoBehaviour
     public float step_Distance = 2.0f;
 
     StatusController statusController;
+    [SerializeField] private GameObject deathScreenObj;
 
     // Start is called before the first frame update
     void Start()
@@ -115,7 +116,7 @@ public class PlayerController : MonoBehaviour
 
     private void IsDeath()
     {
-        if (StatusController.currentHp == 0)
+        if (statusController.currentHp == 0)
         {
             mouseLock = true;
             StartCoroutine(DeathCoroutine());
@@ -140,6 +141,16 @@ public class PlayerController : MonoBehaviour
             yield return null;
         }
         theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
+
+        // 죽었을 시의 메뉴 등장
+        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
+        for (int i = 0; i < uis.Length; i++)
+            uis[i].SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameManager.canPlayerMove = false;
+        deathScreenObj.SetActive(true);
     }
 
     private void CharaterRotationTryFrontInverse()

@@ -8,11 +8,11 @@ public class StatusController : MonoBehaviour
 
     // 체력
     [SerializeField] private int hp;
-    public static float currentHp;
+    public float currentHp;
 
     // 스태미나
     [SerializeField] private int mp;
-    public static float currentMp;
+    public float currentMp;
 
     // 필요한 이미지
     [SerializeField] private Image[] images_GaugeFront;
