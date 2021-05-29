@@ -14,7 +14,7 @@ public class SettingData
     public int quialityIndex = 3;
     public bool isFullscreen = true;
     public int resolutionIndex = -1;
-    public string resolution = "320 x 240";
+    public string resolution = "640 x 480";
 }
 
 public class Setting : MonoBehaviour
@@ -54,6 +54,9 @@ public class Setting : MonoBehaviour
                     resolutions[i].height == Screen.currentResolution.height)
                 currentResolutionIndex = i;
         }
+        resolutionDropdown.AddOptions(options);
+        //resolutionDropdown.value = currentResolutionIndex;
+        resolutionDropdown.RefreshShownValue();
         // Load Setting Values
         SETTING_DATA_DIRECTORY = Application.dataPath + "/Setting/";
         if (!Directory.Exists(SETTING_DATA_DIRECTORY))
@@ -84,9 +87,26 @@ public class Setting : MonoBehaviour
             Screen.fullScreen = settingData.isFullscreen;
             fullscreenToggle.isOn = settingData.isFullscreen;
             // Load Resolution if possible
-            //if (settingData.resolutionIndex != -1)
-            //    currentResolutionIndex = settingData.resolutionIndex;
-            //settingData.resolutionIndex = currentResolutionIndex;
+            if (settingData.resolutionIndex != -1)
+            {
+                Resolution resolution;
+                if (settingData.resolutionIndex <= resolutions.Length &&
+                settingData.resolution == 
+                resolutions[settingData.resolutionIndex].width + " x " + resolutions[settingData.resolutionIndex].height)
+                {
+                    resolution = resolutions[settingData.resolutionIndex];
+                    resolutionDropdown.value = settingData.resolutionIndex;
+                }
+                else
+                {
+                    resolution = resolutions[0];
+                    resolutionDropdown.value = 0;
+                    settingData.resolutionIndex = 0;
+                    settingData.resolution = resolution.width + " x " + resolution.height;
+                }
+                Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
+            }
+            //resolutionDropdown.value = currentResolutionIndex;
             //settingData.resolution = resolutions[currentResolutionIndex].width + " x " +
             //    resolutions[currentResolutionIndex].height;
         }
@@ -96,10 +116,6 @@ public class Setting : MonoBehaviour
             string json = JsonUtility.ToJson(settingData);
             File.WriteAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME, json);
         }
-
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
     }
     public void SetBrightness(float sliderValue)
     {
@@ -170,7 +186,7 @@ public class Setting : MonoBehaviour
     public void CloseMenu()
     {
         baseUI.SetActive(false);
-        TitleUI.SetActive(true);
+        if(TitleUI) TitleUI.SetActive(true);
         SaveSetting();
     }
 

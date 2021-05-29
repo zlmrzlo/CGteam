@@ -15,7 +15,7 @@ public class Object : MonoBehaviour
 {
     private GameObject obj; // 해당 게임 오브젝트
     [SerializeField]
-    private gravityDirection gDirection;
+    public gravityDirection gDirection;
     private Rigidbody myRigid;
 
     // Start is called before the first frame update

@@ -5,13 +5,14 @@ using UnityEngine;
 public class lava : MonoBehaviour
 {
     public static bool inLava = false;
+    private StatusController statusController;
 
     [SerializeField] private int damage;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        statusController = FindObjectOfType<PlayerController>().GetComponent<StatusController>();
     }
 
     // Update is called once per frame
@@ -51,6 +52,6 @@ public class lava : MonoBehaviour
     void onFire()
     {
         if (inLava == true)
-            StatusController.currentHp -= Time.deltaTime * damage;
+            statusController.currentHp -= Time.deltaTime * damage;
     }
 }

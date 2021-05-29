@@ -23,7 +23,7 @@ public class DoorManager : MonoBehaviour
 
     void Update()
     {
-        CheckSwitch();
+        if (!GameManager.isPause) CheckSwitch();
     }
 
     private void CheckSwitch()
