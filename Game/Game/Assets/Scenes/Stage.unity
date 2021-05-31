@@ -23237,7 +23237,7 @@ MonoBehaviour:
   lookSensitivity: 2
   cameraRotationLimit: 45
   theCamera: {fileID: 528883538}
-  step_Distance: 2
+  origin_step_Distance: 0.25
   deathScreenObj: {fileID: 1463077950}
 --- !u!114 &1337034737
 MonoBehaviour:
