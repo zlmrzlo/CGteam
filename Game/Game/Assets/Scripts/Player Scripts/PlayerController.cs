@@ -65,7 +65,8 @@ public class PlayerController : MonoBehaviour
 
     AudioSource footstep_Sound;
     private float accumulated_Distance;
-    public float step_Distance = 2.0f;
+    private float apply_step_Distance;
+    public float origin_step_Distance = 2.0f;
 
     StatusController statusController;
     [SerializeField] private GameObject deathScreenObj;
@@ -94,7 +95,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.canPlayerMove)
         {
             //Gravity();
-            IsGround(); 
+            IsGround();
             IsDeath();
             TryJump();
             TryRun();
@@ -313,7 +314,7 @@ public class PlayerController : MonoBehaviour
         // 백업용
         //isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
         isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 2f);
-        
+
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
         //Debug.Log(isGround);
@@ -416,11 +417,19 @@ public class PlayerController : MonoBehaviour
             // e.g. make a step or sprint, or move while crouching
             // until we play the footstep sound
             accumulated_Distance += Time.deltaTime;
+            if (isRun == true)
+            {
+                apply_step_Distance = origin_step_Distance / 2;
+            }
+            else
+            {
+                apply_step_Distance = origin_step_Distance;
+            }
 
-            if (accumulated_Distance > step_Distance)
+            if (accumulated_Distance > apply_step_Distance)
             {
 
-                footstep_Sound.volume = Random.Range(0.1f, 0.5f);
+                footstep_Sound.volume = Random.Range(20.0f, 40.0f);
                 footstep_Sound.Play();
 
                 accumulated_Distance = 0f;

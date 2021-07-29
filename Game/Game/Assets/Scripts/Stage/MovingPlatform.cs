@@ -7,6 +7,7 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 start;
     private Vector3 finish;
     private Vector3 direction;
+    private Vector3 distance;
     [SerializeField]
     private float velocity;
     [SerializeField]
@@ -20,11 +21,10 @@ public class MovingPlatform : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         start = transform.position;
-        finish = transform.GetChild(0).position;
+        finish = transform.GetChild(1).position;
         direction = (finish - start).normalized;
         switchOn = false;
         goToFinish = true;
-        //StartCoroutine(MovePlatform());
     }
 
     void Update()
@@ -35,6 +35,7 @@ public class MovingPlatform : MonoBehaviour
     }
     private void CheckSwitch()
     {
+        turnOnSwitch = 0;
         for (int i = 0; i < switchs.Length; i++)
         {
             if (switchs[i].turnOn == true)
@@ -48,7 +49,8 @@ public class MovingPlatform : MonoBehaviour
         }
         else
         {
-            turnOnSwitch = 0;
+            switchOn = false;
+            
         }
     }
 
@@ -75,16 +77,17 @@ public class MovingPlatform : MonoBehaviour
         }
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject == player)
+        if(other.transform.CompareTag("Player"))
         {
-            player.transform.parent = transform;
+            transform.GetChild(0).position = other.transform.position;
+            other.transform.parent = transform.GetChild(0);
         }
     }
-    private void OnCollisionExit(Collision collision)
+    private void OnTriggerExit(Collider other)
     {
-        if (collision.gameObject == player)
+        if (other.transform.CompareTag("Player"))
         {
             player.transform.parent = null;
         }
