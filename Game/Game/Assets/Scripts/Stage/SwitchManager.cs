@@ -7,7 +7,7 @@ public abstract class SwitchManager : MonoBehaviour
     public bool turnOn;
     public bool isOpen;
     [SerializeField]
-    protected LightManager light;
+    protected new LightManager light;
     [SerializeField]
     protected float turnOnTime;
 

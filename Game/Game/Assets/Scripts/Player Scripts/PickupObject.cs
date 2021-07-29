@@ -88,7 +88,6 @@ public class PickupObject : MonoBehaviour
         carrying = true;
         carriedObject = p.gameObject;
         p.GetComponent<Rigidbody>().isKinematic = true;
-        p.GetComponent<MeshCollider>().enabled = false;
         p.GetComponent<BoxCollider>().enabled = false;
     }
 
@@ -105,7 +104,6 @@ public class PickupObject : MonoBehaviour
         carrying = false;
         animator.SetBool("Hold", false);
         carriedObject.GetComponent<Rigidbody>().isKinematic = false;
-        p.GetComponent<MeshCollider>().enabled = true;
         p.GetComponent<BoxCollider>().enabled = true;
         carriedObject = null;
     }
