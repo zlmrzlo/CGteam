@@ -15,7 +15,7 @@ public class Object : MonoBehaviour
 {
     private GameObject obj; // 해당 게임 오브젝트
     [SerializeField]
-    private gravityDirection gDirection;
+    public gravityDirection gDirection;
     private Rigidbody myRigid;
 
     // Start is called before the first frame update
@@ -70,32 +70,35 @@ public class Object : MonoBehaviour
     }
     public void changeDirection()
     {
-        switch (gDirection)
+        if(transform.CompareTag("Player"))
         {
-            case gravityDirection.Down:
-                myRigid.rotation = new Quaternion(0f, 0f, 0f, 1.0f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);
-                break;
-            case gravityDirection.UP:
-                myRigid.rotation = new Quaternion(-1.0f, 0f, 0f, 0f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);
-                break;
-            case gravityDirection.Right:
-                myRigid.rotation = new Quaternion(0f, 0f, 0.7f, 0.7f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);        
-                break;
-            case gravityDirection.Left:
-                myRigid.rotation = new Quaternion(0f, 0f, -0.7f, 0.7f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);
-                break;
-            case gravityDirection.Forward:
-                myRigid.rotation = new Quaternion(-0.7f, 0f, 0f, 0.7f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);
-                break;
-            case gravityDirection.Beheind:
-                myRigid.rotation = new Quaternion(-0.7f, 0f, 0f, -0.7f).normalized;
-                myRigid.MoveRotation(myRigid.rotation);
-                break;
+            switch (gDirection)
+            {
+                case gravityDirection.Down:
+                    myRigid.rotation = new Quaternion(0f, 0f, 0f, 1.0f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+                case gravityDirection.UP:
+                    myRigid.rotation = new Quaternion(-1.0f, 0f, 0f, 0f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+                case gravityDirection.Right:
+                    myRigid.rotation = new Quaternion(0f, 0f, 0.7f, 0.7f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+                case gravityDirection.Left:
+                    myRigid.rotation = new Quaternion(0f, 0f, -0.7f, 0.7f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+                case gravityDirection.Forward:
+                    myRigid.rotation = new Quaternion(-0.7f, 0f, 0f, 0.7f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+                case gravityDirection.Beheind:
+                    myRigid.rotation = new Quaternion(-0.7f, 0f, 0f, -0.7f).normalized;
+                    myRigid.MoveRotation(myRigid.rotation);
+                    break;
+            }
         }
     }
 }

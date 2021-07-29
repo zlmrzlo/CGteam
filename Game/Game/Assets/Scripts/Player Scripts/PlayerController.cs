@@ -30,6 +30,10 @@ public class PlayerController : MonoBehaviour
     private float originPosY;
     private float applyCrouchPosY;
 
+    private float deathRotX = -90;
+    private float originRotX;
+    private float applyDeathRotX;
+
     // 땅 착지 여부
     private CapsuleCollider capsuleCollider;
 
@@ -57,14 +61,20 @@ public class PlayerController : MonoBehaviour
     bool rightGravity = false;
     bool forwardGravity = false;
 
+    bool mouseLock = false;
+
     AudioSource footstep_Sound;
     private float accumulated_Distance;
-    public float step_Distance = 2.0f;
+    private float apply_step_Distance;
+    public float origin_step_Distance = 2.0f;
 
+    StatusController statusController;
+    [SerializeField] private GameObject deathScreenObj;
 
     // Start is called before the first frame update
     void Start()
     {
+        statusController = GetComponent<StatusController>();
         footstep_Sound = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -73,7 +83,9 @@ public class PlayerController : MonoBehaviour
         myRigid = player.GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
+        originRotX = theCamera.transform.localRotation.x;
         applyCrouchPosY = originPosY;
+        applyDeathRotX = -90f;
     }
 
     // Update is called once per frame
@@ -84,12 +96,16 @@ public class PlayerController : MonoBehaviour
         {
             //Gravity();
             IsGround();
+            IsDeath();
             TryJump();
             TryRun();
             TryCrouch();
-            Move();
-            CameraRotation();
-            CharacterRotation();
+            if (!mouseLock)
+            {
+                Move();
+                CameraRotation();
+                CharacterRotation();
+            }
             // 위, 아래
             CharaterRotationTryInverse();
             // 오른쪽, 왼쪽
@@ -97,6 +113,45 @@ public class PlayerController : MonoBehaviour
             // 앞, 뒤
             CharaterRotationTryFrontInverse();
         }
+    }
+
+    private void IsDeath()
+    {
+        if (statusController.currentHp == 0)
+        {
+            mouseLock = true;
+            StartCoroutine(DeathCoroutine());
+            myRigid.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        float rotX = theCamera.transform.localRotation.x;
+        Debug.Log(applyDeathRotX);
+        int count = 0;
+
+        while (rotX != applyDeathRotX)
+        {
+            count++;
+            rotX = Mathf.Lerp(rotX, -90, 0.01f);
+            theCamera.transform.localRotation = Quaternion.Euler(rotX, 0f, 0f);
+            if (count > 300)
+                break;
+            // 1 프레임마다 실행시킨다.
+            yield return null;
+        }
+        theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
+
+        // 죽었을 시의 메뉴 등장
+        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
+        for (int i = 0; i < uis.Length; i++)
+            uis[i].SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameManager.canPlayerMove = false;
+        deathScreenObj.SetActive(true);
     }
 
     private void CharaterRotationTryFrontInverse()
@@ -259,7 +314,7 @@ public class PlayerController : MonoBehaviour
         // 백업용
         //isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
         isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 2f);
-        
+
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
         //Debug.Log(isGround);
@@ -362,11 +417,19 @@ public class PlayerController : MonoBehaviour
             // e.g. make a step or sprint, or move while crouching
             // until we play the footstep sound
             accumulated_Distance += Time.deltaTime;
+            if (isRun == true)
+            {
+                apply_step_Distance = origin_step_Distance / 2;
+            }
+            else
+            {
+                apply_step_Distance = origin_step_Distance;
+            }
 
-            if (accumulated_Distance > step_Distance)
+            if (accumulated_Distance > apply_step_Distance)
             {
 
-                footstep_Sound.volume = Random.Range(0.1f, 0.5f);
+                footstep_Sound.volume = Random.Range(20.0f, 40.0f);
                 footstep_Sound.Play();
 
                 accumulated_Distance = 0f;

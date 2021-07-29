@@ -18,12 +18,12 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         turnOnSwitch = 0;
-        doorFinishPos = new Vector3(door.transform.position.x, door.transform.position.y - 3.0f, door.transform.position.z);
+        doorFinishPos = new Vector3(door.transform.position.x, door.transform.position.y - 3.5f, door.transform.position.z);
     }
 
     void Update()
     {
-        CheckSwitch();
+        if (!GameManager.isPause) CheckSwitch();
     }
 
     private void CheckSwitch()

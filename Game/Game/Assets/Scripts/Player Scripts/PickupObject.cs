@@ -28,15 +28,18 @@ public class PickupObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (carrying)
+        if (!GameManager.isPause)
         {
-            carry(carriedObject);
-            checkDrop();
-            //rotateObject();
-        }
-        else
-        {
-            pickup();
+            if (carrying)
+            {
+                carry(carriedObject);
+                checkDrop();
+                //rotateObject();
+            }
+            else
+            {
+                pickup();
+            }
         }
     }
 
@@ -85,7 +88,6 @@ public class PickupObject : MonoBehaviour
         carrying = true;
         carriedObject = p.gameObject;
         p.GetComponent<Rigidbody>().isKinematic = true;
-        p.GetComponent<MeshCollider>().enabled = false;
         p.GetComponent<BoxCollider>().enabled = false;
     }
 
@@ -102,7 +104,6 @@ public class PickupObject : MonoBehaviour
         carrying = false;
         animator.SetBool("Hold", false);
         carriedObject.GetComponent<Rigidbody>().isKinematic = false;
-        p.GetComponent<MeshCollider>().enabled = true;
         p.GetComponent<BoxCollider>().enabled = true;
         carriedObject = null;
     }
