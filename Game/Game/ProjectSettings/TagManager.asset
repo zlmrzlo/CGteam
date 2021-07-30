@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Object
   - UIs
+  - Bomb
+  - Hand
   layers:
   - Default
   - TransparentFX
