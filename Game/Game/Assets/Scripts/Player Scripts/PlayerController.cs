@@ -262,7 +262,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["CROUCH"]))
         {
             Crouch();
         }
@@ -322,7 +322,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["JUMP"]) && isGround)
         {
             Jump();
         }
@@ -368,11 +368,11 @@ public class PlayerController : MonoBehaviour
 
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyBindManager.KeyBinds["RUN"]))
         {
             Running();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyBindManager.KeyBinds["RUN"]))
         {
             RunningCancel();
         }
@@ -396,8 +396,14 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // GetAxisRaw를 통해서 방향을 얻어올 수 있다.
-        float moveDirX = Input.GetAxisRaw("Horizontal");
-        float moveDirZ = Input.GetAxisRaw("Vertical");
+        // float moveDirX = Input.GetAxisRaw("Horizontal");
+        // float moveDirZ = Input.GetAxisRaw("Vertical");
+
+        float moveDirX = 0.0f, moveDirZ = 0.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["UP"])) moveDirZ += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["DOWN"])) moveDirZ -= 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["RIGHT"])) moveDirX += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["LEFT"])) moveDirX -= 1.0f;
 
         // 방향을 향해서 움직일 수 있게 만든다.
         Vector3 moveHorizontal = transform.right * moveDirX;

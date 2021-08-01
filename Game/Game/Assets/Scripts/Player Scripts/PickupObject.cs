@@ -58,7 +58,7 @@ public class PickupObject : MonoBehaviour
     void pickup()
     {
         // E 버튼을 누르면 픽업을 한다.
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["ACT"]))
         {
             Debug.Log("OK1");
             // 스크린의 정중앙

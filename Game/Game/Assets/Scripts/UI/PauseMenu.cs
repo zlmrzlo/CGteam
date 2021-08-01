@@ -46,6 +46,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ClickRestart()
     {
+        if (lava.inLava) lava.inLava = false;
         RestartInfo.isRestart = true;
         GameManager.isPause = false;
         SceneManager.LoadScene(sceneName);
