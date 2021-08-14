@@ -22,7 +22,7 @@ public class PlayerController : MonoBehaviour
     // 기본값은 false이지만 한눈에 알아볼 수 있도록 하기 위해서 초기화
     private bool isRun = false;
     private bool isCrouch = false;
-    private bool isGround = true;
+    private bool isGround = false;
 
     // 앉았을 때 얼마나 앉을지 결정하는 변수
     [SerializeField]
@@ -30,16 +30,21 @@ public class PlayerController : MonoBehaviour
     private float originPosY;
     private float applyCrouchPosY;
 
+    private float deathRotX = -90;
+    private float originRotX;
+    private float applyDeathRotX;
+
     // 땅 착지 여부
     private CapsuleCollider capsuleCollider;
 
     // 스크립트가 들어가는 컴포넌트에 있는 리지드바디를 
     // 가지고 올 수 있도록 변수 선언
     private Rigidbody myRigid;
+    private GameObject player;
 
     // 마우스를 얼마나 민감하게 움직일 것인지 설정한다.
     [SerializeField]
-    private float lookSensitivity;
+    public float lookSensitivity;
 
     // 마우스를 움직였을 때 화면이 계속해서 돌아가는 것을
     // 방지해주기 위해서 카메라회전에 제한을 둔다.
@@ -56,36 +61,97 @@ public class PlayerController : MonoBehaviour
     bool rightGravity = false;
     bool forwardGravity = false;
 
+    bool mouseLock = false;
+
+    AudioSource footstep_Sound;
+    private float accumulated_Distance;
+    private float apply_step_Distance;
+    public float origin_step_Distance = 2.0f;
+
+    StatusController statusController;
+    [SerializeField] private GameObject deathScreenObj;
+
     // Start is called before the first frame update
     void Start()
     {
+        statusController = GetComponent<StatusController>();
+        footstep_Sound = GetComponent<AudioSource>();
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         capsuleCollider = GetComponent<CapsuleCollider>();
-        myRigid = GetComponent<Rigidbody>();
+        player = GameObject.FindWithTag("Player");
+        myRigid = player.GetComponent<Rigidbody>();
         applySpeed = walkSpeed;
         originPosY = theCamera.transform.localPosition.y;
+        originRotX = theCamera.transform.localRotation.x;
         applyCrouchPosY = originPosY;
+        applyDeathRotX = -90f;
     }
 
     // Update is called once per frame
     // 업데이트는 대략 1초에 60번 정도 호출된다.
     void Update()
     {
-        Gravity();
-        IsGround();
-        TryJump();
-        TryRun();
-        TryCrouch();
-        Move();
-        CameraRotation();
-        CharacterRotation();
-        // 위, 아래
-        CharaterRotationTryInverse();
-        // 오른쪽, 왼쪽
-        CharaterRotationTrySideInverse();
-        // 앞, 뒤
-        CharaterRotationTryFrontInverse();
+        if (GameManager.canPlayerMove)
+        {
+            //Gravity();
+            IsGround();
+            IsDeath();
+            TryJump();
+            TryRun();
+            TryCrouch();
+            if (!mouseLock)
+            {
+                Move();
+                CameraRotation();
+                CharacterRotation();
+            }
+            // 위, 아래
+            CharaterRotationTryInverse();
+            // 오른쪽, 왼쪽
+            CharaterRotationTrySideInverse();
+            // 앞, 뒤
+            CharaterRotationTryFrontInverse();
+        }
+    }
+
+    private void IsDeath()
+    {
+        if (statusController.currentHp == 0)
+        {
+            mouseLock = true;
+            StartCoroutine(DeathCoroutine());
+            myRigid.constraints = RigidbodyConstraints.FreezeAll;
+        }
+    }
+
+    IEnumerator DeathCoroutine()
+    {
+        float rotX = theCamera.transform.localRotation.x;
+        Debug.Log(applyDeathRotX);
+        int count = 0;
+
+        while (rotX != applyDeathRotX)
+        {
+            count++;
+            rotX = Mathf.Lerp(rotX, -90, 0.01f);
+            theCamera.transform.localRotation = Quaternion.Euler(rotX, 0f, 0f);
+            if (count > 300)
+                break;
+            // 1 프레임마다 실행시킨다.
+            yield return null;
+        }
+        theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
+
+        // 죽었을 시의 메뉴 등장
+        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
+        for (int i = 0; i < uis.Length; i++)
+            uis[i].SetActive(false);
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        GameManager.canPlayerMove = false;
+        deathScreenObj.SetActive(true);
     }
 
     private void CharaterRotationTryFrontInverse()
@@ -196,7 +262,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["CROUCH"]))
         {
             Crouch();
         }
@@ -247,8 +313,8 @@ public class PlayerController : MonoBehaviour
         // extents는 캡슐의 반의 길이를 의미한다.
         // 백업용
         //isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
-        isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 100f);
-        
+        isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 2f);
+
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
         //Debug.Log(isGround);
@@ -256,7 +322,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["JUMP"]) && isGround)
         {
             Jump();
         }
@@ -302,11 +368,11 @@ public class PlayerController : MonoBehaviour
 
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyBindManager.KeyBinds["RUN"]))
         {
             Running();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyBindManager.KeyBinds["RUN"]))
         {
             RunningCancel();
         }
@@ -330,8 +396,14 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // GetAxisRaw를 통해서 방향을 얻어올 수 있다.
-        float moveDirX = Input.GetAxisRaw("Horizontal");
-        float moveDirZ = Input.GetAxisRaw("Vertical");
+        // float moveDirX = Input.GetAxisRaw("Horizontal");
+        // float moveDirZ = Input.GetAxisRaw("Vertical");
+
+        float moveDirX = 0.0f, moveDirZ = 0.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["UP"])) moveDirZ += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["DOWN"])) moveDirZ -= 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["RIGHT"])) moveDirX += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["LEFT"])) moveDirX -= 1.0f;
 
         // 방향을 향해서 움직일 수 있게 만든다.
         Vector3 moveHorizontal = transform.right * moveDirX;
@@ -343,6 +415,37 @@ public class PlayerController : MonoBehaviour
 
         // 델타 타임을 통해서 뚝뚝 끊기는 화면을 부드럽게 만들어준다.
         myRigid.MovePosition(transform.position + velocity * Time.deltaTime);
+
+        if (velocity.sqrMagnitude > 0 && isGround)
+        {
+
+            // accumulated distance is the value how far can we go 
+            // e.g. make a step or sprint, or move while crouching
+            // until we play the footstep sound
+            accumulated_Distance += Time.deltaTime;
+            if (isRun == true)
+            {
+                apply_step_Distance = origin_step_Distance / 2;
+            }
+            else
+            {
+                apply_step_Distance = origin_step_Distance;
+            }
+
+            if (accumulated_Distance > apply_step_Distance)
+            {
+
+                footstep_Sound.volume = Random.Range(20.0f, 40.0f);
+                footstep_Sound.Play();
+
+                accumulated_Distance = 0f;
+            }
+        }
+        else
+        {
+            accumulated_Distance = 0f;
+        }
+
     }
 
     // 캐릭터 회전을 나타내는 함수

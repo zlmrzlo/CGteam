@@ -9,72 +9,89 @@ public class PickupObject : MonoBehaviour
     bool carrying;
     GameObject carriedObject;
     public float distance;
-    public float smooth;
+    public float smooth; 
+    Pickupable p;
 
-    // Update is called once per frame
-    void Update()
+    Animator animator;
+
+    void Start()
     {
-        if (carrying)
-        {
-            carry(carriedObject);
-            checkDrop();
-            //rotateObject();
-        }
-        else
-        {
-            pickup();
-        }
+        animator = GetComponentInChildren<Animator>();
     }
 
-    // 물건을 듦과 동시에 물건이 회전함
-    void rotateObject()
+    void Update()
     {
-        carriedObject.transform.Rotate(5, 10, 15);
+        if (!GameManager.isPause)
+        {
+            if (carrying)
+            {
+                Carry(carriedObject);
+                CheckDrop();
+            }
+            else
+            {
+                Pickup();
+            }
+        }
     }
 
     // 물건을 캐릭터 앞으로 가지고 옴
-    void carry(GameObject o)
+    void Carry(GameObject o)
     {
-        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + (mainCamera.transform.forward - 0.2f * mainCamera.transform.up) * distance, Time.deltaTime * smooth);
+        // Vector3.Lerp(물건 위치, 최종 위치, 인터벌)
+        o.transform.position = Vector3.Lerp(o.transform.position, mainCamera.transform.position + (0.8f * mainCamera.transform.forward - 0.3f * mainCamera.transform.up) * distance, Time.deltaTime * smooth);
     }
 
-    void pickup()
+    void Pickup()
     {
         // E 버튼을 누르면 픽업을 한다.
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["ACT"]))
         {
             // 스크린의 정중앙
             int x = Screen.width / 2;
             int y = Screen.height / 2;
 
+
             // 스크린의 정중앙에 빛을 쏴서 맞추는 오브젝트를 들게 한다.
             Ray ray = mainCamera.ScreenPointToRay(new Vector3(x, y));
             RaycastHit hit;
+
             if (Physics.Raycast(ray, out hit))
             {
-                Pickupable p = hit.collider.GetComponent<Pickupable>();
+                p = hit.collider.GetComponentInChildren<Pickupable>();
+                
                 if (p != null)
                 {
-                    carrying = true;
-                    carriedObject = p.gameObject;
-                    p.GetComponent<Rigidbody>().isKinematic = true;
+                    animator.SetBool("Hold", true);
+                    StartCoroutine(PickDelay());
                 }
             }
         }
     }
 
-    void checkDrop()
+    IEnumerator PickDelay()
+    {
+        yield return new WaitForSeconds(0.1f);
+        carrying = true;
+        carriedObject = p.gameObject;
+        p.GetComponent<Rigidbody>().isKinematic = true;
+        p.GetComponent<BoxCollider>().enabled = false;
+    }
+
+    void CheckDrop()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            dropObject();
+            DropObject();
         }
     }
 
-    void dropObject()
+    void DropObject()
     {
         carrying = false;
+        animator.SetBool("Hold", false);
         carriedObject.GetComponent<Rigidbody>().isKinematic = false;
+        p.GetComponent<BoxCollider>().enabled = true;
         carriedObject = null;
     }
 }

@@ -5,6 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Object
+  - UIs
+  - Bomb
+  - Hand
+  - Keybind
+  - Boar
   layers:
   - Default
   - TransparentFX
