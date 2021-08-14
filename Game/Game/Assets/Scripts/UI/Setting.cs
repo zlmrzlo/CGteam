@@ -72,7 +72,7 @@ public class Setting : MonoBehaviour
             Directory.CreateDirectory(SETTING_DATA_DIRECTORY);
         if (File.Exists(SETTING_DATA_DIRECTORY + SETTING_FILENAME))
         {
-            Debug.Log("Loading Settings.txt");
+            //Debug.Log("Loading Settings.txt");
             isLoaded = true;
             string loadJson = File.ReadAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME);
             settingData = JsonUtility.FromJson<SettingData>(loadJson);
@@ -101,7 +101,7 @@ public class Setting : MonoBehaviour
             // Load KeyBinds
             for (int i = 0; i < settingData.keyBindKey.Length; i++)
                 kbManager.LoadKey(settingData.keyBindKey[i], settingData.keyBindVal[i]);
-            Debug.Log(KeyBindManager.KeyBinds);
+            //Debug.Log(KeyBindManager.KeyBinds);
             // Load Resolution if possible
             if (settingData.resolutionIndex != -1)
             {

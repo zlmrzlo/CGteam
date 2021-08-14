@@ -5,6 +5,9 @@ using UnityEngine;
 public class Throwing : MonoBehaviour
 {
     [SerializeField]
+    ParticleSystem smallExplosion;
+
+    [SerializeField]
     GameObject bomb;
 
     [SerializeField]
@@ -14,10 +17,12 @@ public class Throwing : MonoBehaviour
     Camera mainCamera;
 
     Rigidbody rigidbody;
+    Rigidbody playerRigidbody;
 
     Animator animator;
 
     AudioSource audioSource;
+    AudioSource audioSourceFire;
 
     SphereCollider sphereCollider;
 
@@ -26,13 +31,16 @@ public class Throwing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audioSourceFire = smallExplosion.GetComponent<AudioSource>();
         audioSource = bomb.GetComponent<AudioSource>();
         bomb.transform.parent = parent.transform;
         rigidbody = bomb.GetComponent<Rigidbody>();
         sphereCollider = bomb.GetComponent<SphereCollider>();
-        if(sphereCollider != null)
+        playerRigidbody = GetComponentInParent<Rigidbody>();
+
+        if (sphereCollider != null)
         {
-            Debug.Log("hit sphereCollider"); 
+            //`Debug.Log("hit sphereCollider"); 
         }
 
         animator = GetComponentInChildren<Animator>();
@@ -40,6 +48,7 @@ public class Throwing : MonoBehaviour
         {
             //Debug.Log("hit animator"); 
         }
+        bomb.SetActive(false);
     }
 
     // Update is called once per frame
@@ -89,21 +98,24 @@ public class Throwing : MonoBehaviour
 
     IEnumerator RemoveBomb()
     {
+        yield return new WaitForSeconds(2.5f);
+        audioSourceFire.Play();
+        yield return new WaitForSeconds(0.5f);
+        smallExplosion.transform.position = bomb.transform.position;
+        smallExplosion.Play();
         yield return new WaitForSeconds(3.0f);
         bomb.SetActive(false);
         is_Throw = false;
         sphereCollider.radius = 0.007f; 
         sphereCollider.isTrigger = false;
-        rigidbody.isKinematic = true;
     }
 
     IEnumerator Bomb()
     {
         yield return new WaitForSeconds(2.5f);
         sphereCollider.radius = 1f;
+        rigidbody.isKinematic = true;
         sphereCollider.isTrigger = true;
-        //Debug.Log(sphereCollider.radius);
-        //Debug.Log(sphereCollider.isTrigger);
     }
 
     public void SetLayersRecursively(Transform trans, string name)

@@ -8,6 +8,8 @@ TagManager:
   - UIs
   - Bomb
   - Hand
+  - Keybind
+  - Boar
   layers:
   - Default
   - TransparentFX

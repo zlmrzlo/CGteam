@@ -22,7 +22,7 @@ public class Eating : MonoBehaviour
         eating_Sound = potion.GetComponent<AudioSource>();
         if(eating_Sound != null)
         {
-            Debug.Log("eating sound");
+            //Debug.Log("eating sound");
         }
 
         animator = GetComponentInChildren<Animator>();
@@ -30,6 +30,7 @@ public class Eating : MonoBehaviour
         {
             //Debug.Log("hit animator"); 
         }
+        potion.SetActive(false);
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class Eating : MonoBehaviour
         eating_Sound.Play();
         if (statusController.currentHp < 100)
         {
-            Debug.Log(statusController.currentHp);
+            //Debug.Log(statusController.currentHp);
             statusController.IncreaseHP(20);
         }
     }

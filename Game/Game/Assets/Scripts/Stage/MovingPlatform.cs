@@ -63,7 +63,7 @@ public class MovingPlatform : MonoBehaviour
             if (transform.position == finish)
             {
                 goToFinish = !goToFinish;
-                Debug.Log("플랫폼 이동");
+                //Debug.Log("플랫폼 이동");
             }
         }
         else
@@ -72,7 +72,7 @@ public class MovingPlatform : MonoBehaviour
             if (transform.position == start)
             {
                 goToFinish = !goToFinish;
-                Debug.Log("플랫폼 이동");
+                //Debug.Log("플랫폼 이동");
             }
         }
 

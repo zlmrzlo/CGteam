@@ -13,12 +13,11 @@ public enum gravityDirection
 };
 public class Object : MonoBehaviour
 {
-    private GameObject obj; // 해당 게임 오브젝트
+    GameObject obj; // 해당 게임 오브젝트
     [SerializeField]
     public gravityDirection gDirection;
-    private Rigidbody myRigid;
+    Rigidbody myRigid;
 
-    // Start is called before the first frame update
     void Start()
     {
         obj = this.gameObject;
@@ -26,10 +25,16 @@ public class Object : MonoBehaviour
         myRigid = obj.GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        changeGravity2();
+        if (transform.CompareTag("Bomb") || transform.CompareTag("Boar"))
+        {
+
+        }
+        else
+        {
+            changeGravity2();
+        }
     }
    
     private void changeGravity2()
@@ -60,6 +65,7 @@ public class Object : MonoBehaviour
                 break;
         }
     }
+
     public void changeGravity(gravityDirection dir)
     {
         if(gDirection != dir)
@@ -68,6 +74,7 @@ public class Object : MonoBehaviour
             changeDirection();
         }
     }
+
     public void changeDirection()
     {
         if(transform.CompareTag("Player"))
