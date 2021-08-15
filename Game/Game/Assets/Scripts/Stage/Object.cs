@@ -11,11 +11,11 @@ public enum gravityDirection
     Forward,
     Beheind
 };
+
 public class Object : MonoBehaviour
 {
     GameObject obj; // 해당 게임 오브젝트
-    [SerializeField]
-    public gravityDirection gDirection;
+    [SerializeField] public gravityDirection gDirection;
     Rigidbody myRigid;
 
     void Start()
@@ -27,14 +27,7 @@ public class Object : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (transform.CompareTag("Bomb") || transform.CompareTag("Boar"))
-        {
-
-        }
-        else
-        {
-            changeGravity2();
-        }
+        changeGravity2();
     }
    
     private void changeGravity2()

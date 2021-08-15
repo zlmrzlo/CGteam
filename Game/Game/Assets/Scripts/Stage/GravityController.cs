@@ -8,28 +8,29 @@ public class GravityController : MonoBehaviour
     [SerializeField]
     private gravityDirection changeTo;
 
-    public GameObject bomb;
-    public GameObject player;
+    GameObject Bomb;
     gravityDirection gravityDirection;
+    Object playerObject;
+    Object bombObject;
 
-    // Start is called before the first frame update
     void Start()
     {
-        bomb = GameObject.Find("Bomb");
-        player = GameObject.Find("Player");
+        Bomb = GameObject.Find("Bomb");
+        bombObject = Bomb.GetComponent<Object>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-    }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player"))
+        if (other.CompareTag("Bomb"))
         {
-            other.GetComponent<Object>().changeGravity(changeTo);
-            gravityDirection = other.GetComponent<Object>().gDirection;
-            bomb.GetComponent<Object>().changeGravity(gravityDirection);
+
+        }
+        else if (other.CompareTag("Player"))
+        {
+            playerObject = other.GetComponent<Object>();
+            playerObject.changeGravity(changeTo);
+            gravityDirection = playerObject.gDirection;
+            bombObject.gDirection = gravityDirection;
         }
         else
         {
