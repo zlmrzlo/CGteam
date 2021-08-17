@@ -53,26 +53,21 @@ public class Boar : MonoBehaviour
         playerInSightRange = Physics.CheckSphere(transform.position, sightRange, whatIsPlayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, whatIsPlayer);
 
-        if(!isDeath)
+        if(!isDeath && !alreadyHurted)
         {
             if (!playerInSightRange && !playerInAttackRange)
             {
-                animator.SetBool("Walk", true);
                 Patroling();
             }
 
             if (playerInSightRange && !playerInAttackRange)
             {
-                animator.SetBool("Walk", true);
                 ChasePlayer();
             }
 
             if (playerInAttackRange && playerInSightRange)
             {
-                if (!alreadyHurted)
-                {
-                    AttackPlayer();
-                }
+                AttackPlayer();
             }
         }
         else
@@ -83,6 +78,7 @@ public class Boar : MonoBehaviour
 
     private void Patroling()
     {
+        animator.SetBool("Walk", true);
         if (!walkPointSet) SearchWalkPoint();
 
         if (walkPointSet)
@@ -112,7 +108,11 @@ public class Boar : MonoBehaviour
 
     private void ChasePlayer()
     {
+        animator.SetBool("Walk", true);
         agent.SetDestination(player.position);
+
+        Quaternion rotationTarget = Quaternion.LookRotation(player.position - transform.position);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotationTarget, 10f * Time.deltaTime);
     }
 
     private void AttackPlayer()
@@ -151,9 +151,10 @@ public class Boar : MonoBehaviour
         {
             health -= damage;
 
+            alreadyHurted = true;
+            animator.SetBool("Walk", false);
             animator.SetBool("Attack", false);
             animator.SetBool("Hurt", true);
-            alreadyHurted = true;
             audioSource.clip = Injured;
             audioSource.Play();
             Invoke(nameof(ResetHurt), timeBetweenHurt);
