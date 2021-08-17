@@ -13,9 +13,13 @@ public class Attacking : MonoBehaviour
     Camera mainCamera;
 
     Collider target;
+    Boar targetObject;
 
-    [SerializeField]
-    float maxDistance;
+    public float maxDistance = 2f;
+
+    public int HandDamage = 20;
+
+    //[SerializeField] float maxDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -46,13 +50,16 @@ public class Attacking : MonoBehaviour
             if (Physics.Raycast(ray, out hit, maxDistance))
             {
                 target = hit.collider.GetComponentInChildren<Collider>();
-                print(target.name);
+                //print(target.name);
 
-                if (target != null)
+                targetObject = target.GetComponent<Boar>();
+
+                if (target != null && targetObject != null)
                 {
                     if(!animator.GetBool("Attack"))
                     {
                         animator.SetBool("Attack", true);
+                        targetObject.TakeDamage(HandDamage);
                         StartCoroutine(CancelAttack());
                     }
                 }
@@ -62,7 +69,7 @@ public class Attacking : MonoBehaviour
 
     IEnumerator CancelAttack()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         animator.SetBool("Attack", false);
     }
 

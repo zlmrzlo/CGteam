@@ -21,6 +21,11 @@ public class GravityController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        if(other.CompareTag("Boar"))
+        {
+            return;
+        }
+
         if (other.CompareTag("Bomb"))
         {
 
