@@ -10,6 +10,7 @@ TagManager:
   - Hand
   - Keybind
   - Boar
+  - UIs2
   layers:
   - Default
   - TransparentFX

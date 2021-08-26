@@ -9,12 +9,14 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private GameObject BaseUI;
     [SerializeField] private GameObject SettingUI;
     [SerializeField] private SaveAndLoad theSNL;
+    private GameObject[] UIs;
     private PlayerController player;
 
     // Start is called before the first frame update
     void Start()
     {
-        if(RestartInfo.isRestart)
+        UIs = GameObject.FindGameObjectsWithTag("UIs");
+        if (RestartInfo.isRestart)
         {
             player = FindObjectOfType<PlayerController>();
             player.transform.position = RestartInfo.resetPosition;
@@ -35,12 +37,16 @@ public class PauseMenu : MonoBehaviour
     private void CallMenu()
     {
         GameManager.isPause = true;
+        for (int i = 0; i < UIs.Length; i++)
+            UIs[i].SetActive(false);
         BaseUI.SetActive(true);
         Time.timeScale = 0f;
     }
     public void CloseMenu()
     {
         GameManager.isPause = false;
+        for (int i = 0; i < UIs.Length; i++)
+            UIs[i].SetActive(true);
         BaseUI.SetActive(false);
         Time.timeScale = 1f;
     }

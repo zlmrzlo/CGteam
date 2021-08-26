@@ -144,7 +144,11 @@ public class PlayerController : MonoBehaviour
         theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
 
         // 죽었을 시의 메뉴 등장
-        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
+        GameObject[] uis1 = GameObject.FindGameObjectsWithTag("UIs");
+        GameObject[] uis2 = GameObject.FindGameObjectsWithTag("UIs2");
+        GameObject[] uis = new GameObject[uis1.Length + uis2.Length];
+        uis1.CopyTo(uis, 0);
+        uis2.CopyTo(uis, uis1.Length);
         for (int i = 0; i < uis.Length; i++)
             uis[i].SetActive(false);
 
