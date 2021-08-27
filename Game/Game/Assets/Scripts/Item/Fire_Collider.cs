@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class lava : MonoBehaviour
+public class Fire_Collider : MonoBehaviour
 {
     public static bool inLava = false;
     public GameObject Player;
     public Camera cam;
     public GameObject GotHitScreen;
 
-    [SerializeField] private int damage;
+    [SerializeField]
+    private int damage = 20;
 
-    // Update is called once per frame
     void Update()
     {
         if (GotHitScreen != null)
