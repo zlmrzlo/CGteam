@@ -6,11 +6,6 @@ TagManager:
   tags:
   - Object
   - UIs
-  - Bomb
-  - Hand
-  - Keybind
-  - Boar
-  - UIs2
   layers:
   - Default
   - TransparentFX
