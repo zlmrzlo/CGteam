@@ -95,7 +95,7 @@ public class PlayerController : MonoBehaviour
         if (GameManager.canPlayerMove)
         {
             //Gravity();
-            IsGround(); 
+            IsGround();
             IsDeath();
             TryJump();
             TryRun();
@@ -144,7 +144,11 @@ public class PlayerController : MonoBehaviour
         theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
 
         // 죽었을 시의 메뉴 등장
-        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
+        GameObject[] uis1 = GameObject.FindGameObjectsWithTag("UIs");
+        GameObject[] uis2 = GameObject.FindGameObjectsWithTag("UIs2");
+        GameObject[] uis = new GameObject[uis1.Length + uis2.Length];
+        uis1.CopyTo(uis, 0);
+        uis2.CopyTo(uis, uis1.Length);
         for (int i = 0; i < uis.Length; i++)
             uis[i].SetActive(false);
 
@@ -262,7 +266,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryCrouch()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl))
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["CROUCH"]))
         {
             Crouch();
         }
@@ -314,7 +318,7 @@ public class PlayerController : MonoBehaviour
         // 백업용
         //isGround = Physics.Raycast(transform.position, Vector3.down, capsuleCollider.bounds.extents.y + 0.1f);
         isGround = Physics.Raycast(transform.position, -transform.up, capsuleCollider.bounds.extents.y + 2f);
-        
+
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
         //Debug.Log(isGround);
@@ -322,7 +326,7 @@ public class PlayerController : MonoBehaviour
 
     private void TryJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && isGround)
+        if (Input.GetKeyDown(KeyBindManager.KeyBinds["JUMP"]) && isGround)
         {
             Jump();
         }
@@ -368,11 +372,11 @@ public class PlayerController : MonoBehaviour
 
     private void TryRun()
     {
-        if (Input.GetKey(KeyCode.LeftShift))
+        if (Input.GetKey(KeyBindManager.KeyBinds["RUN"]))
         {
             Running();
         }
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyBindManager.KeyBinds["RUN"]))
         {
             RunningCancel();
         }
@@ -396,8 +400,14 @@ public class PlayerController : MonoBehaviour
     private void Move()
     {
         // GetAxisRaw를 통해서 방향을 얻어올 수 있다.
-        float moveDirX = Input.GetAxisRaw("Horizontal");
-        float moveDirZ = Input.GetAxisRaw("Vertical");
+        // float moveDirX = Input.GetAxisRaw("Horizontal");
+        // float moveDirZ = Input.GetAxisRaw("Vertical");
+
+        float moveDirX = 0.0f, moveDirZ = 0.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["UP"])) moveDirZ += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["DOWN"])) moveDirZ -= 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["RIGHT"])) moveDirX += 1.0f;
+        if (Input.GetKey(KeyBindManager.KeyBinds["LEFT"])) moveDirX -= 1.0f;
 
         // 방향을 향해서 움직일 수 있게 만든다.
         Vector3 moveHorizontal = transform.right * moveDirX;
@@ -417,7 +427,7 @@ public class PlayerController : MonoBehaviour
             // e.g. make a step or sprint, or move while crouching
             // until we play the footstep sound
             accumulated_Distance += Time.deltaTime;
-            if(isRun == true)
+            if (isRun == true)
             {
                 apply_step_Distance = origin_step_Distance / 2;
             }

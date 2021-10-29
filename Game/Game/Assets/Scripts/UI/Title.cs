@@ -63,7 +63,6 @@ public class Title : MonoBehaviour
     {
         for (int i = 0; i < buttons.Length; i++)
             buttons[i].SetActive(false);
-        //this.gameObject.SetActive(false);
         SettingUI.SetActive(true);
     }
 
