@@ -38,7 +38,7 @@ public class PadSwitch : SwitchManager
         if (rigid.mass > weight)
         {
             switchOn();
-            
+            turnOnSwitch();
         }
     }
     private void OnTriggerEnter(Collider other)
@@ -63,7 +63,7 @@ public class PadSwitch : SwitchManager
     private void switchOn()
     {
         padMaterial.SetColor("_EmissiveColor", new Color(0f,170.0f,170.0f,0f));
-        turnOnSwitch();
+        
         light.lightOn = true;
     }
     private void switchOff()

@@ -7,7 +7,6 @@ public class MovingPlatform : MonoBehaviour
     private Vector3 start;
     private Vector3 finish;
     private Vector3 direction;
-    private Vector3 distance;
     [SerializeField]
     private float velocity;
     [SerializeField]
@@ -21,10 +20,11 @@ public class MovingPlatform : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         start = transform.position;
-        finish = transform.GetChild(1).position;
+        finish = transform.GetChild(0).position;
         direction = (finish - start).normalized;
         switchOn = false;
         goToFinish = true;
+        //StartCoroutine(MovePlatform());
     }
 
     void Update()
@@ -35,7 +35,6 @@ public class MovingPlatform : MonoBehaviour
     }
     private void CheckSwitch()
     {
-        turnOnSwitch = 0;
         for (int i = 0; i < switchs.Length; i++)
         {
             if (switchs[i].turnOn == true)
@@ -49,8 +48,7 @@ public class MovingPlatform : MonoBehaviour
         }
         else
         {
-            switchOn = false;
-            
+            turnOnSwitch = 0;
         }
     }
 
@@ -63,7 +61,7 @@ public class MovingPlatform : MonoBehaviour
             if (transform.position == finish)
             {
                 goToFinish = !goToFinish;
-                //Debug.Log("플랫폼 이동");
+                Debug.Log("플랫폼 이동");
             }
         }
         else
@@ -72,30 +70,25 @@ public class MovingPlatform : MonoBehaviour
             if (transform.position == start)
             {
                 goToFinish = !goToFinish;
-                //Debug.Log("플랫폼 이동");
+                Debug.Log("플랫폼 이동");
             }
         }
 
     }
-<<<<<<< HEAD
 <<<<<<< Updated upstream
     private void OnCollisionEnter(Collision collision)
 =======
     /*private void OnTriggerEnter(Collider other)
 >>>>>>> Stashed changes
-=======
-    private void OnTriggerEnter(Collider other)
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
     {
-        if(other.transform.CompareTag("Player"))
+        if (collision.gameObject == player)
         {
-            transform.GetChild(0).position = other.transform.position;
-            other.transform.parent = transform.GetChild(0);
+            player.transform.parent = transform;
         }
     }
-    private void OnTriggerExit(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.transform.CompareTag("Player"))
+        if (collision.gameObject == player)
         {
             player.transform.parent = null;
         }

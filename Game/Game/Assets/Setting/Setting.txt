@@ -1,1 +1,1 @@
-{"brightness":0.0,"bgmVolume":0.06223512068390846,"effectVolume":0.5,"mouseSensitivity":1.0,"quialityIndex":3,"isFullscreen":true,"resolutionIndex":-1,"resolution":"640 x 480","keyBindKey":["UP","DOWN","LEFT","RIGHT","RUN","CROUCH","JUMP","ACT","USE"],"keyBindVal":[119,115,97,100,304,306,32,101,323]}
+{"brightness":0.0,"bgmVolume":0.5,"effectVolume":0.5,"mouseSensitivity":1.0,"quialityIndex":3,"isFullscreen":true,"resolutionIndex":-1,"resolution":"320 x 240"}

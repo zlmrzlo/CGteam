@@ -1,44 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class lava : MonoBehaviour
 {
     public static bool inLava = false;
-    public GameObject Player;
-    public Camera cam;
-    public GameObject GotHitScreen;
+    private StatusController statusController;
 
     [SerializeField] private int damage;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        statusController = FindObjectOfType<PlayerController>().GetComponent<StatusController>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (GotHitScreen != null)
+        onFire();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.transform.tag == "Player")
         {
-            if (GotHitScreen.GetComponent<Image>().color.a > 0)
-            {
-                var color = GotHitScreen.GetComponent<Image>().color;
-                color.a -= 0.01f;
-                GotHitScreen.GetComponent<Image>().color = color;
-            }
+            GetLava(other);
+
         }
     }
 <<<<<<< Updated upstream
 
-<<<<<<< HEAD
     private void OnTriggerExit(Collider other)
 =======
     private void OnCollisionEnter(Collision collision)
 >>>>>>> Stashed changes
-=======
-    private void OnTriggerEnter(Collider other)
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
     {
         if (collision.transform.tag == "Player")
         {
-            StartCoroutine("countTime", 1);
+            GetOutLava(other);
         }
     }
     private void OnCollisionExit(Collision collision)
@@ -54,38 +54,24 @@ public class lava : MonoBehaviour
         
     }
 
-    IEnumerator countTime(float delayTime)
+    private void GetLava(Collider _player)
     {
-        gotHurt();
-        yield return new WaitForSeconds(delayTime);
-        StartCoroutine("countTime", 1);
+        inLava = true;
 
     }
 
-    void gotHurt()
+    private void GetOutLava(Collider _player)
     {
-        Player.transform.GetComponent<StatusController>().DecreaseHP(damage);
-        cam.GetComponent<CameraShake>().Shake();
-        var color = GotHitScreen.GetComponent<Image>().color;
-        color.a = 0.5f;
-        GotHitScreen.GetComponent<Image>().color = color;
+        inLava = false;
     }
 
-    private void OnTriggerExit(Collider other)
+    void onFire()
     {
-<<<<<<< HEAD
 <<<<<<< Updated upstream
         if (inLava == true)
             statusController.currentHp -= Time.deltaTime * damage;
 =======
         
 >>>>>>> Stashed changes
-=======
-        if (other.transform.tag == "Player")
-        {
-            StopCoroutine("countTime");
-
-        }
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
     }
 }

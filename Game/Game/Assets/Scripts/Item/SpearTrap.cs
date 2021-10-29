@@ -29,7 +29,7 @@ public class SpearTrap : MonoBehaviour
 
     void Fire()
     {
-        for (int i = 0; i < 10; i++)
+        for (int i = 0; i < 5; i++)
         {
             Spear.transform.Translate(new Vector3(0, -0.1f, 0));
             i++;

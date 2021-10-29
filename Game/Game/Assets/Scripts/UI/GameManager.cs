@@ -12,7 +12,6 @@ public class GameManager : MonoBehaviour
     public static bool isWater = false;
 
     public static bool isPause = false;
-    public static bool isVisible = true;
 
     private bool flag = false;
     //private WeaponManager wm;
