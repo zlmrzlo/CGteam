@@ -77,19 +77,7 @@ public class MovingPlatform : MonoBehaviour
         }
 
     }
-<<<<<<< HEAD
-    private void OnCollisionEnter(Collision collision)
-=======
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-    private void OnCollisionEnter(Collision collision)
-=======
-    /*private void OnTriggerEnter(Collider other)
->>>>>>> Stashed changes
-=======
     private void OnTriggerEnter(Collider other)
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
->>>>>>> parent of b6a86605 (Revert "Revert "Revert "2021.10.29 합치기 예행""")
     {
         if(other.transform.CompareTag("Player"))
         {
