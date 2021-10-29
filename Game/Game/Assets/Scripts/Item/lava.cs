@@ -29,29 +29,13 @@ public class lava : MonoBehaviour
 
         }
     }
-<<<<<<< Updated upstream
 
     private void OnTriggerExit(Collider other)
-=======
-    private void OnCollisionEnter(Collision collision)
->>>>>>> Stashed changes
     {
-        if (collision.transform.tag == "Player")
+        if (other.transform.tag == "Player")
         {
             GetOutLava(other);
         }
-    }
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.transform.tag == "Player")
-        {
-            StopCoroutine("countTime");
-
-        }
-    }
-    private void OnTriggerEnter(Collider other)
-    {
-        
     }
 
     private void GetLava(Collider _player)
@@ -67,11 +51,7 @@ public class lava : MonoBehaviour
 
     void onFire()
     {
-<<<<<<< Updated upstream
         if (inLava == true)
             statusController.currentHp -= Time.deltaTime * damage;
-=======
-        
->>>>>>> Stashed changes
     }
 }
