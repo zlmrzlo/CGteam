@@ -15,21 +15,30 @@ public class SettingData
     public bool isFullscreen = true;
     public int resolutionIndex = -1;
     public string resolution = "640 x 480";
+    public string[] keyBindKey = { 
+        "UP", "DOWN", "LEFT", "RIGHT", "RUN", "CROUCH", "JUMP", "ACT", "USE" 
+    };
+    public KeyCode[] keyBindVal = { 
+        KeyCode.W, KeyCode.S, KeyCode.A, KeyCode.D, KeyCode.LeftShift, KeyCode.LeftControl, KeyCode.Space, KeyCode.E, KeyCode.Mouse0 
+    };
 }
 
 public class Setting : MonoBehaviour
 {
-    private SettingData settingData = new SettingData();
-    private string SETTING_DATA_DIRECTORY;
-    private string SETTING_FILENAME = "/Setting.txt";
+    public static SettingData settingData = new SettingData();
+    public static bool isLoaded = false;
+    private static string SETTING_DATA_DIRECTORY;
+    private static string SETTING_FILENAME = "/Setting.txt";
 
     [SerializeField] private GameObject baseUI;
     [SerializeField] private GameObject TitleUI;
+    [SerializeField] private GameObject KeyBindUI;
     [SerializeField] private Slider brightness;
     [SerializeField] private Slider volumeBGM;
     [SerializeField] private Slider volumeEffect;
     [SerializeField] private Slider mouse;
     private PlayerController mouseLook;
+    private KeyBindManager kbManager;
     public AudioMixer bgmMixer;
     public AudioMixer effectMixer;
 
@@ -63,9 +72,12 @@ public class Setting : MonoBehaviour
             Directory.CreateDirectory(SETTING_DATA_DIRECTORY);
         if (File.Exists(SETTING_DATA_DIRECTORY + SETTING_FILENAME))
         {
+            //Debug.Log("Loading Settings.txt");
+            isLoaded = true;
             string loadJson = File.ReadAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME);
             settingData = JsonUtility.FromJson<SettingData>(loadJson);
             mouseLook = FindObjectOfType<PlayerController>();
+            kbManager = FindObjectOfType<KeyBindManager>();
 
             // Load Brightness
             RenderSettings.ambientIntensity = settingData.brightness;
@@ -86,6 +98,10 @@ public class Setting : MonoBehaviour
             // Load Fullscreen
             Screen.fullScreen = settingData.isFullscreen;
             fullscreenToggle.isOn = settingData.isFullscreen;
+            // Load KeyBinds
+            for (int i = 0; i < settingData.keyBindKey.Length; i++)
+                kbManager.LoadKey(settingData.keyBindKey[i], settingData.keyBindVal[i]);
+            //Debug.Log(KeyBindManager.KeyBinds);
             // Load Resolution if possible
             if (settingData.resolutionIndex != -1)
             {
@@ -117,21 +133,33 @@ public class Setting : MonoBehaviour
             File.WriteAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME, json);
         }
     }
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.P))
+            if (GameManager.isPause)
+            {
+                CloseMenu();
+                SaveSetting();
+            }
+    }
     public void SetBrightness(float sliderValue)
     {
         RenderSettings.ambientIntensity = sliderValue;
         settingData.brightness = sliderValue;
+        SaveSetting();
     }
 
     public void SetBGMVolume(float sliderValue)
     {
         bgmMixer.SetFloat("BGMVolume", Mathf.Log10(sliderValue * 2) * 20);
         settingData.bgmVolume = sliderValue;
+        SaveSetting();
     }
     public void SetEffectVolume(float sliderValue)
     {
         effectMixer.SetFloat("EffectVolume", Mathf.Log10(sliderValue * 2) * 20);
         settingData.effectVolume = sliderValue;
+        SaveSetting();
     }
 
     public void SetMouseSensitivity(float sliderValue)
@@ -140,6 +168,7 @@ public class Setting : MonoBehaviour
         if (mouseLook)
             mouseLook.lookSensitivity = sliderValue;
         settingData.mouseSensitivity = sliderValue;
+        SaveSetting();
     }
 
     public void SetResolution(int index)
@@ -148,39 +177,52 @@ public class Setting : MonoBehaviour
         Screen.SetResolution(resolution.width, resolution.height, Screen.fullScreen);
         settingData.resolutionIndex = index;
         settingData.resolution = resolution.width + " x " + resolution.height;
+        SaveSetting();
     }
 
     public void SetQuality (int index)
     {
         QualitySettings.SetQualityLevel(index);
         settingData.quialityIndex = index;
+        SaveSetting();
     }
 
     public void SetFullScreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
         settingData.isFullscreen = isFullscreen;
+        SaveSetting();
     }
 
     public void ResetBrightness()
     {
         brightness.value = 1f;
         settingData.brightness = 1f;
+        SaveSetting();
     }
     public void ResetBGMVolume()
     {
         volumeBGM.value = 0.5f;
         settingData.bgmVolume = 0.5f;
+        SaveSetting();
     }
     public void ResetEffectVolume()
     {
         volumeEffect.value = 0.5f;
         settingData.effectVolume = 0.5f;
+        SaveSetting();
     }
     public void ResetMouse()
     {
         mouse.value = 1.0f;
         settingData.mouseSensitivity = 1.0f;
+        SaveSetting();
+    }
+
+    public void OpenKeybind()
+    {
+        KeyBindUI.SetActive(true);
+        SaveSetting();
     }
 
     public void CloseMenu()
@@ -190,7 +232,7 @@ public class Setting : MonoBehaviour
         SaveSetting();
     }
 
-    private void SaveSetting()
+    public static void SaveSetting()
     {
         SETTING_DATA_DIRECTORY = Application.dataPath + "/Setting/";
         string json = JsonUtility.ToJson(settingData);

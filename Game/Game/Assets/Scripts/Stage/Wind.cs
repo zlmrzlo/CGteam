@@ -23,6 +23,9 @@ public class Wind : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         var rigid = other.gameObject.GetComponent<Rigidbody>();
-        rigid.AddForce(direction * 3.0f, ForceMode.Impulse);
+        if(other.CompareTag("Player"))
+            rigid.AddForce(direction * 5.0f, ForceMode.Impulse);
+        else
+            rigid.AddForce(direction * 5.0f, ForceMode.Impulse);
     }
 }
