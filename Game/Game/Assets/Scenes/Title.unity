@@ -2320,6 +2320,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1897054333}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2031210517 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6350794436404073297, guid: 377b71bf93c53c54bb3ab870c14953a9,
+    type: 3}
+  m_PrefabInstance: {fileID: 4644483613199337440}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2052672281
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2523,6 +2529,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2624728065044776223, guid: 377b71bf93c53c54bb3ab870c14953a9,
+        type: 3}
+      propertyPath: KeyBindUI
+      value: 
+      objectReference: {fileID: 2031210517}
     - target: {fileID: 4644483613086886135, guid: 377b71bf93c53c54bb3ab870c14953a9,
         type: 3}
       propertyPath: m_TagString
