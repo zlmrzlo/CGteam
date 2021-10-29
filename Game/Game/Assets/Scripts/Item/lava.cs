@@ -26,17 +26,7 @@ public class lava : MonoBehaviour
         }
     }
 
-<<<<<<< HEAD
-    private void OnTriggerExit(Collider other)
-<<<<<<< HEAD
-=======
-=======
-    private void OnCollisionEnter(Collision collision)
->>>>>>> Stashed changes
-=======
     private void OnTriggerEnter(Collider other)
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
->>>>>>> parent of b6a86605 (Revert "Revert "Revert "2021.10.29 합치기 예행""")
     {
         if (other.transform.tag == "Player")
         {
@@ -63,24 +53,10 @@ public class lava : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-<<<<<<< HEAD
-        if (inLava == true)
-            statusController.currentHp -= Time.deltaTime * damage;
-=======
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-        if (inLava == true)
-            statusController.currentHp -= Time.deltaTime * damage;
-=======
-        
->>>>>>> Stashed changes
-=======
         if (other.transform.tag == "Player")
         {
             StopCoroutine("countTime");
 
         }
->>>>>>> 08f71a5a3f9e42b62e04ccfdee109215be372b61
->>>>>>> parent of b6a86605 (Revert "Revert "Revert "2021.10.29 합치기 예행""")
     }
 }
