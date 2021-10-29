@@ -75,11 +75,7 @@ public class MovingPlatform : MonoBehaviour
         }
 
     }
-<<<<<<< Updated upstream
     private void OnCollisionEnter(Collision collision)
-=======
-    /*private void OnTriggerEnter(Collider other)
->>>>>>> Stashed changes
     {
         if (collision.gameObject == player)
         {
@@ -92,5 +88,5 @@ public class MovingPlatform : MonoBehaviour
         {
             player.transform.parent = null;
         }
-    }*/
+    }
 }
