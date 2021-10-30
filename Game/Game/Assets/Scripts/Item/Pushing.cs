@@ -54,33 +54,38 @@ public class Pushing : MonoBehaviour
 
         if (Physics.Raycast(ray, out hit, 5.0f))
         {
-            p = hit.collider.GetComponent<Pushable>();
-            buttonSound = p.GetComponent<AudioSource>();
-            buttonOnOff = p.GetComponentInParent<Button>();
-            buttonMaterial = p.GetComponent<Renderer>().material;
-            
-            if(buttonMaterial != null)
+            if (hit.transform.CompareTag("Switch"))
             {
-                //print("clear3");
-            }
+                p = hit.collider.GetComponent<Pushable>();
+                buttonSound = p.GetComponent<AudioSource>();
+                buttonOnOff = p.GetComponentInParent<Button>();
+                buttonMaterial = p.GetComponent<Renderer>().material;
 
-            if (p != null)
-            {
-                //print("clear2");
-                p.transform.Translate(new Vector3(0.0f, -0.02f, 0.0f));
-                buttonSound.Play();
+                if (buttonMaterial != null)
+                {
+                    //print("clear3");
+                }
 
-                //print(buttonMaterial.color);
-                //print(buttonMaterial.color);
-                if (!clickButton)
+                if (p != null)
                 {
-                    buttonMaterial.SetColor("_EmissiveColor", new Color(0f, 170.0f, 170.0f, 0f));
+                    //print("clear2");
+                    p.transform.Translate(new Vector3(0.0f, -0.02f, 0.0f));
+                    buttonSound.Play();
+
+                    //print(buttonMaterial.color);
+                    //print(buttonMaterial.color);
+                    if (!clickButton)
+                    {
+                        buttonMaterial.SetColor("_EmissiveColor", new Color(0f, 170.0f, 170.0f, 0f));
+                        buttonOnOff.switchOn();
+                    }
+                    else
+                    {
+                        buttonMaterial.SetColor("_EmissiveColor", new Color(255.0f, 0f, 0f, 0f));
+                        buttonOnOff.switchOff();
+                    }
+                    clickButton = !clickButton;
                 }
-                else
-                {
-                    buttonMaterial.SetColor("_EmissiveColor", new Color(255.0f, 0f, 0f, 0f));
-                }
-                clickButton = !clickButton;
             }
         }
     }
@@ -88,6 +93,9 @@ public class Pushing : MonoBehaviour
     void CancelPushing()
     {
         animator.SetBool("Push", false);
-        p.transform.Translate(new Vector3(0.0f, 0.02f, 0.0f));
+        if (p != null)
+        {
+            p.transform.Translate(new Vector3(0.0f, 0.02f, 0.0f));
+        }
     }
 }

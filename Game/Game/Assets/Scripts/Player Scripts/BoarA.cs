@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public class Boar : MonoBehaviour
+public class BoarA : MonoBehaviour
 {
     NavMeshAgent nav;
     GameObject target;

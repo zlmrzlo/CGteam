@@ -99,11 +99,8 @@ public class Hotbar : MonoBehaviour
 
     public void CheckUsed()
     {
-        if (Input.GetKeyDown(KeyBindManager.KeyBinds["USE"]))
-        {
-            Debug.Log("Item used in hotbar slot " + (scrollPosition + 1));
+        if (Input.GetKeyDown(KeyCode.F))
             if (thisSlot.name == "HotbarSlot" + (scrollPosition + 1) && inventorySlot.item != null)
                 inventorySlot.UseItem();
-        }
     }
 }

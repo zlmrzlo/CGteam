@@ -26,7 +26,7 @@ public class SpikeTrap : MonoBehaviour
         while (true)
         {
             transform.position += new Vector3(0, 0.9f, 0);
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(2f); 
             transform.position -= new Vector3(0, 0.9f, 0);
             yield return new WaitForSeconds(1f);
         }

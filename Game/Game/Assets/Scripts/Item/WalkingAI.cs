@@ -33,10 +33,10 @@ public class WalkingAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.isVisible == true)
-            CheckDistance();
-        else if (GameManager.isVisible == false)
-            Idle();
+        //if (GameManager.isVisible == true)
+        //    CheckDistance();
+        //else if (GameManager.isVisible == false)
+        //    Idle();
     }
 
     private void CheckDistance()

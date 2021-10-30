@@ -96,6 +96,11 @@ public class PlayerController : MonoBehaviour
         {
             //Gravity();
             IsGround();
+            if(!isGround)
+            {
+                Fall();
+            }
+            FallDamage();
             IsDeath();
             TryJump();
             TryRun();
@@ -144,11 +149,7 @@ public class PlayerController : MonoBehaviour
         theCamera.transform.localRotation = Quaternion.Euler(-90, 0f, 0f);
 
         // 죽었을 시의 메뉴 등장
-        GameObject[] uis1 = GameObject.FindGameObjectsWithTag("UIs");
-        GameObject[] uis2 = GameObject.FindGameObjectsWithTag("UIs2");
-        GameObject[] uis = new GameObject[uis1.Length + uis2.Length];
-        uis1.CopyTo(uis, 0);
-        uis2.CopyTo(uis, uis1.Length);
+        GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
         for (int i = 0; i < uis.Length; i++)
             uis[i].SetActive(false);
 
@@ -322,6 +323,25 @@ public class PlayerController : MonoBehaviour
         // 땅 착지 여부 확인용
         //Debug.Log(capsuleCollider.bounds.extents.y);
         //Debug.Log(isGround);
+    }
+    float fallHeight = 0;
+    private void Fall()
+    {
+        float x = myRigid.velocity.x;
+        float y = myRigid.velocity.y;
+        float z = myRigid.velocity.z;
+
+        fallHeight = x + y + z;
+        print(fallHeight);
+    }
+
+    private void FallDamage()
+    {
+        if (fallHeight < -20.0f && isGround)
+        {
+            statusController.DecreaseHP(10);
+            fallHeight = 0f;
+        }
     }
 
     private void TryJump()

@@ -9,7 +9,7 @@ public class PickupObject : MonoBehaviour
     bool carrying;
     GameObject carriedObject;
     public float distance;
-    public float smooth; 
+    public float smooth;
     Pickupable p;
 
     Animator animator;
