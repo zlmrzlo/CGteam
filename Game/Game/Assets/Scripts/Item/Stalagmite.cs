@@ -4,32 +4,13 @@ using UnityEngine;
 
 public class Stalagmite : MonoBehaviour
 {
-    public GameObject Player;
-    public GameObject Stone;
     public Camera cam;
-    private float Dist;
-
-    [SerializeField]
-    private float distance;
 
     [SerializeField]
     private int damage;
 
     [SerializeField]
     private int knockbackPower;
-
-
-    void Update()
-    {
-        Dist = Vector3.Distance(Player.transform.position, Stone.transform.position);
-        Fall();
-    }
-
-    void Fall()
-    {
-        if (Dist <= distance)
-            Stone.GetComponent<Rigidbody>().useGravity = true;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

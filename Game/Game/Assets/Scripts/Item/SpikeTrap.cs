@@ -6,7 +6,7 @@ public class SpikeTrap : MonoBehaviour
 {
     public GameObject Player;
     public Camera cam;
-    
+
 
     [SerializeField]
     private int damage;
@@ -14,6 +14,14 @@ public class SpikeTrap : MonoBehaviour
     [SerializeField]
     private int knockbackPower;
 
+    [SerializeField]
+    private float DelayTime = 0f;
+
+    [SerializeField]
+    private float UpTime = 0f;
+
+    [SerializeField]
+    private float DownTime = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -23,12 +31,14 @@ public class SpikeTrap : MonoBehaviour
 
     IEnumerator Spike()
     {
+        yield return new WaitForSeconds(DelayTime);
+
         while (true)
         {
             transform.position += new Vector3(0, 0.9f, 0);
-            yield return new WaitForSeconds(2f); 
+            yield return new WaitForSeconds(UpTime);
             transform.position -= new Vector3(0, 0.9f, 0);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(DownTime);
         }
     }
 

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3000060562537084113}
   - component: {fileID: 3608632898479273824}
   m_Layer: 0
-  m_Name: SpikeTeap_spike_LP.003
+  m_Name: Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -91,7 +91,7 @@ GameObject:
   - component: {fileID: 3995030129385153843}
   - component: {fileID: 6425694384118223830}
   m_Layer: 0
-  m_Name: SpikeTeap_Floor_LP.001
+  m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -173,7 +173,7 @@ GameObject:
   - component: {fileID: 2473739480332417877}
   - component: {fileID: 8731198688844622475}
   m_Layer: 0
-  m_Name: SpikeTeap_spike_LP.002
+  m_Name: Spike
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -256,6 +256,9 @@ MonoBehaviour:
   cam: {fileID: 0}
   damage: 20
   knockbackPower: 200
+  DelayTime: 0
+  UpTime: 2
+  DownTime: 2
 --- !u!54 &2473739480332417877
 Rigidbody:
   m_ObjectHideFlags: 0
