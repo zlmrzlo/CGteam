@@ -217,6 +217,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   changeTo: 0
+  bomb: {fileID: 0}
+  player: {fileID: 0}
 --- !u!198 &5007993410466464398
 ParticleSystem:
   m_ObjectHideFlags: 0
