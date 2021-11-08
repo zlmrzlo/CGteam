@@ -8,34 +8,53 @@ public class GravityController : MonoBehaviour
     [SerializeField]
     private gravityDirection changeTo;
 
-    GameObject Bomb;
+    public GameObject bomb;
+    public GameObject player;
     gravityDirection gravityDirection;
-    Object playerObject;
-    Object bombObject;
+    private ParticleSystem particle;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
-        Bomb = GameObject.Find("Bomb");
-        bombObject = Bomb.GetComponent<Object>();
+        bomb = GameObject.Find("Bomb");
+        player = GameObject.Find("Player");
+
+        particle = GetComponent<ParticleSystem>();
+        var fol = particle.forceOverLifetime;
+        switch (changeTo)
+        {
+            case gravityDirection.Down:
+                fol.y = -10;
+                break;
+            case gravityDirection.UP:
+                fol.y = 10;
+                break;
+            case gravityDirection.Right:
+                fol.x = 10;
+                break;
+            case gravityDirection.Left:
+                fol.x = -10;
+                break;
+            case gravityDirection.Forward:
+                fol.z = 10;
+                break;
+            case gravityDirection.Beheind:
+                fol.z = -10;
+                break;
+        }
     }
 
+    // Update is called once per frame
+    void Update()
+    {
+    }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Boar"))
+        if (other.CompareTag("Player"))
         {
-            return;
-        }
-
-        if (other.CompareTag("Bomb"))
-        {
-
-        }
-        else if (other.CompareTag("Player"))
-        {
-            playerObject = other.GetComponent<Object>();
-            playerObject.changeGravity(changeTo);
-            gravityDirection = playerObject.gDirection;
-            bombObject.gDirection = gravityDirection;
+            other.GetComponent<Object>().changeGravity(changeTo);
+            gravityDirection = other.GetComponent<Object>().gDirection;
+            bomb.GetComponent<Object>().changeGravity(gravityDirection);
         }
         else
         {

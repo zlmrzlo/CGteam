@@ -42,10 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 2750907200801919790}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 149857f5a9e39c7489fcee1cd55a7eb5, type: 3}
+  m_Script: {fileID: 11500000, guid: a2dc6316a4916a1468e1c71cbe89154b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fire: {fileID: 2750907200801919790}
+  fire: {fileID: 2750907201461621551}
+  collider: {fileID: 2750907202011358811}
+  startTime: 2
+  delaytTime1: 2
+  delaytTime2: 2
 --- !u!1 &2750907201461621551
 GameObject:
   m_ObjectHideFlags: 0

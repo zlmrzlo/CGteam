@@ -11,8 +11,8 @@ public class StatusController : MonoBehaviour
     public float currentHp;
 
     // 스태미나
-    [SerializeField] private int mp;
-    public float currentMp;
+    //[SerializeField] private int mp;
+    //public float currentMp;
 
     // 필요한 이미지
     [SerializeField] private Image[] images_GaugeFront;
@@ -28,7 +28,7 @@ public class StatusController : MonoBehaviour
     void Start()
     {
         currentHp = hp;
-        currentMp = mp;
+        //currentMp = mp;
         lerpTimer = new float[images_GaugeFront.Length];
     }
 
@@ -36,16 +36,16 @@ public class StatusController : MonoBehaviour
     void Update()
     {
         currentHp = Mathf.Clamp(currentHp, 0, hp);
-        currentMp = Mathf.Clamp(currentMp, 0, mp);
+        //currentMp = Mathf.Clamp(currentMp, 0, mp);
         GaugeUpdate();
         if (Input.GetKeyDown(KeyCode.Keypad4))
             DecreaseHP(Random.Range(5, 10));
         if (Input.GetKeyDown(KeyCode.Keypad6))
-            IncreaseHP(Random.Range(5, 10));
+            IncreaseHP(Random.Range(5, 10));/*
         if (Input.GetKeyDown(KeyCode.Keypad7))
             DecreaseMP(Random.Range(5, 10));
         if (Input.GetKeyDown(KeyCode.Keypad9))
-            IncreaseMP(Random.Range(5, 10));
+            IncreaseMP(Random.Range(5, 10));*/
     }
 
     private void GaugeUpdate()
@@ -76,9 +76,10 @@ public class StatusController : MonoBehaviour
             images_GaugeFront[HP].fillAmount = Mathf.Lerp(hpFront, hpFraction, percentComplete);
         }
 
-        float mpFront = images_GaugeFront[MP].fillAmount;
-        float mpBack = images_GaugeBack[MP].fillAmount;
-        float mpFraction = (float)currentMp / mp;
+        //float mpFront = images_GaugeFront[MP].fillAmount;
+        //float mpBack = images_GaugeBack[MP].fillAmount;
+        //float mpFraction = (float)currentMp / mp;
+        /*
         if (mpBack > mpFraction)
         {
             images_GaugeFront[MP].fillAmount = mpFraction;
@@ -101,11 +102,11 @@ public class StatusController : MonoBehaviour
             percentComplete *= percentComplete;
             images_GaugeFront[MP].fillAmount = Mathf.Lerp(mpFront, mpFraction, percentComplete);
         }
-
+        */
         //images_GaugeFront[HP].fillAmount = (float)currentHp / hp;
         //images_GaugeFront[MP].fillAmount = (float)currentMp / mp;
         texts_Gauge[HP].text = currentHp + " / " + hp;
-        texts_Gauge[MP].text = currentMp + " / " + mp;
+        //texts_Gauge[MP].text = currentMp + " / " + mp;
     }
 
     public void IncreaseHP(int _count)
@@ -125,7 +126,7 @@ public class StatusController : MonoBehaviour
             Debug.Log("캐릭터의 hp가 0이 되었습니다!!");
         lerpTimer[HP] = 0f;
     }
-
+    /*
     public void IncreaseMP(int _count)
     {
         if (currentMp + _count < mp)
@@ -149,7 +150,7 @@ public class StatusController : MonoBehaviour
     {
         return currentMp;
     }
-
+    */
     public float GetCurrentHP()
     {
         return currentHp;

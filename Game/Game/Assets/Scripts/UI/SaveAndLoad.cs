@@ -7,7 +7,7 @@ using System.IO;
 public class SaveData
 {
     public float playerHP;
-    public float playerMP;
+    //public float playerMP;
     public Vector3 playerPos;
     public Vector3 playerRot;
     public gravityDirection playerGDir;
@@ -48,7 +48,7 @@ public class SaveAndLoad : MonoBehaviour
         boxes = GameObject.FindGameObjectsWithTag("Object");
 
         saveData.playerHP = statusController.currentHp;
-        saveData.playerMP = statusController.currentMp;
+        //saveData.playerMP = statusController.currentMp;
         saveData.playerPos = player.transform.position;
         saveData.playerRot = player.transform.eulerAngles;
         saveData.playerGDir = playerObj.gDirection;
@@ -71,6 +71,7 @@ public class SaveAndLoad : MonoBehaviour
 
         string json = JsonUtility.ToJson(saveData);
         File.WriteAllText(SAVE_DATA_DIRECTORY + SAVE_FILENAME, json);
+        Debug.Log("세이브 성공.");
     }
     public void LoadData()
     {
@@ -85,7 +86,7 @@ public class SaveAndLoad : MonoBehaviour
             boxes = GameObject.FindGameObjectsWithTag("Object");
 
             statusController.currentHp = saveData.playerHP;
-            statusController.currentMp = saveData.playerMP;
+            //statusController.currentMp = saveData.playerMP;
             player.transform.position = saveData.playerPos;
             player.transform.eulerAngles = saveData.playerRot;
             playerObj.gDirection = saveData.playerGDir;
@@ -101,6 +102,7 @@ public class SaveAndLoad : MonoBehaviour
                 boxes[i].transform.eulerAngles = saveData.boxRot[i];
                 boxes[i].GetComponent<Object>().gDirection = saveData.boxGDir[i];
             }
+            saveData = new SaveData();
         }
         else
             Debug.Log("세이브 파일이 없습니다.");

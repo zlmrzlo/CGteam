@@ -35,9 +35,10 @@ public class SpikeTrap : MonoBehaviour
 
         while (true)
         {
-            transform.position += new Vector3(0, 0.9f, 0);
+            transform.localPosition += Vector3.up * 0.9f;
             yield return new WaitForSeconds(UpTime);
-            transform.position -= new Vector3(0, 0.9f, 0);
+            transform.localPosition -= Vector3.up * 0.9f;
+            //transform.position -= new Vector3(0, 0.9f, 0);
             yield return new WaitForSeconds(DownTime);
         }
     }
