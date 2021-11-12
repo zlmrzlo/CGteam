@@ -12,8 +12,6 @@ public class Hotbar : MonoBehaviour
     public Image itemImage;
 
     [SerializeField] private Text textCount;
-    [SerializeField] private Image frameImage;
-    [SerializeField] private Image itemBGImage;
     [SerializeField] private GameObject countImage;
 
     public GameObject InstObject;
@@ -29,7 +27,7 @@ public class Hotbar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine("WaitSlot");
+
     }
 
     // Update is called once per frame
@@ -37,7 +35,7 @@ public class Hotbar : MonoBehaviour
     {
         CheckInventory();
         Selected();
-        if (!GameManager.isPause)
+        if(!GameManager.isPause)
         {
             ChangeSlot();
             CheckUsed();
@@ -64,7 +62,6 @@ public class Hotbar : MonoBehaviour
 
     private void ChangeSlot()
     {
-        int scrollPos_before = scrollPosition;
         if (Input.GetKeyDown(KeyCode.Alpha1))
             scrollPosition = 0;
         if (Input.GetKeyDown(KeyCode.Alpha2))
@@ -91,13 +88,6 @@ public class Hotbar : MonoBehaviour
             scrollPosition--;
             if (scrollPosition <= -1) scrollPosition = 7;
         }
-        if(scrollPos_before != scrollPosition)
-        {
-            StopCoroutine("WaitSlot");
-            frameImage.enabled = true;
-            itemBGImage.enabled = true;
-            StartCoroutine("WaitSlot");
-        }
     }
     private void Selected()
     {
@@ -112,11 +102,5 @@ public class Hotbar : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.F))
             if (thisSlot.name == "HotbarSlot" + (scrollPosition + 1) && inventorySlot.item != null)
                 inventorySlot.UseItem();
-    }
-    IEnumerator WaitSlot()
-    {
-        yield return new WaitForSeconds(2);
-        frameImage.enabled = false;
-        itemBGImage.enabled = false;
     }
 }

@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float crouchSpeed;
 
-    private float applySpeed;
+    public float applySpeed;
 
     // 점프를 위한 순간적인 힘
     [SerializeField]
@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     // 상태 변수
     // 기본값은 false이지만 한눈에 알아볼 수 있도록 하기 위해서 초기화
-    private bool isRun = false;
+    public bool isRun = false;
     private bool isCrouch = false;
     private bool isGround = false;
 
@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
 
     // 스크립트가 들어가는 컴포넌트에 있는 리지드바디를 
     // 가지고 올 수 있도록 변수 선언
-    private Rigidbody myRigid;
+    public Rigidbody myRigid;
     private GameObject player;
 
     // 마우스를 얼마나 민감하게 움직일 것인지 설정한다.
@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
     bool forwardGravity = false;
 
     bool mouseLock = false;
+    //public bool keyLock = false;
 
     AudioSource footstep_Sound;
     private float accumulated_Distance;
@@ -102,8 +103,24 @@ public class PlayerController : MonoBehaviour
             }
             FallDamage();
             IsDeath();
+
+            // 플레이어의 스테미나가 0보다 크면 뛸 수 있고
+            // 0보다 같거나 작으면 걷는다.
+            if(player.GetComponent<StatusController>().currentMp > 0)
+            {
+                TryRun();
+            }
+            else
+            {
+                applySpeed = walkSpeed;
+            }
+
+            if (applySpeed == walkSpeed && player.GetComponent<StatusController>().currentMp < player.GetComponent<StatusController>().mp && isRun == false)
+            {
+                player.GetComponent<StatusController>().IncreaseMP(1);
+            }
+
             TryJump();
-            TryRun();
             TryCrouch();
             if (!mouseLock)
             {
@@ -133,7 +150,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator DeathCoroutine()
     {
         float rotX = theCamera.transform.localRotation.x;
-        Debug.Log(applyDeathRotX);
+        //Debug.Log(applyDeathRotX);
         int count = 0;
 
         while (rotX != applyDeathRotX)
@@ -156,7 +173,6 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.canPlayerMove = false;
-        GameManager.isPause = true;
         deathScreenObj.SetActive(true);
     }
 
@@ -333,7 +349,7 @@ public class PlayerController : MonoBehaviour
         float z = myRigid.velocity.z;
 
         fallHeight = x + y + z;
-        print(fallHeight);
+        //print(fallHeight);
     }
 
     private void FallDamage()
@@ -397,7 +413,8 @@ public class PlayerController : MonoBehaviour
         {
             Running();
         }
-        if (Input.GetKeyUp(KeyBindManager.KeyBinds["RUN"]))
+
+        if (Input.GetKeyUp(KeyBindManager.KeyBinds["RUN"]) || player.GetComponent<StatusController>().currentMp <= 0)
         {
             RunningCancel();
         }
@@ -408,6 +425,7 @@ public class PlayerController : MonoBehaviour
         if (isCrouch)
             Crouch();
 
+        player.GetComponent<StatusController>().DecreaseMP(1);
         isRun = true;
         applySpeed = runSpeed;
     }

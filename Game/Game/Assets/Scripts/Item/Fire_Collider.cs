@@ -13,6 +13,13 @@ public class Fire_Collider : MonoBehaviour
     [SerializeField]
     private int damage = 20;
 
+    private void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        cam = Camera.main;
+        GotHitScreen = GameObject.Find("GotHitScreen");
+    }
+
     void Update()
     {
         if (GotHitScreen != null)

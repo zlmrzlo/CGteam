@@ -15,13 +15,13 @@ public class MovingPlatform : MonoBehaviour
     private int turnOnSwitch;
     private bool switchOn;
     private bool goToFinish;
-    private GameObject player;
+    public GameObject player;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         start = transform.position;
-        finish = transform.GetChild(0).position;
+        finish = transform.GetChild(1).position;
         direction = (finish - start).normalized;
         switchOn = false;
         goToFinish = true;
@@ -77,19 +77,19 @@ public class MovingPlatform : MonoBehaviour
         }
 
     }
-    /*private void OnTriggerEnter(Collider other)
-    {
-        if(other.transform.CompareTag("Player"))
-        {
-            transform.GetChild(0).position = other.transform.position;
-            other.transform.parent = transform.GetChild(0);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.CompareTag("Player"))
-        {
-            player.transform.parent = null;
-        }
-    }*/
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if(other.transform.CompareTag("Player"))
+    //    {
+    //        transform.GetChild(0).position = other.transform.position;
+    //        other.transform.parent = transform.GetChild(0);
+    //    }
+    //}
+    //private void OnTriggerExit(Collider other)
+    //{
+    //    if (other.transform.CompareTag("Player"))
+    //    {
+    //        player.transform.parent = null;
+    //    }
+    //}
 }

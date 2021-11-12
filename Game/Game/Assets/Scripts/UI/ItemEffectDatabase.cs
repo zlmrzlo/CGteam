@@ -51,10 +51,10 @@ public class ItemEffectDatabase : MonoBehaviour
                         {
                             case HP:
                                 thePlayerStatus.IncreaseHP(itemEffects[x].num[y]);
-                                break;/*
+                                break;
                             case MP:
                                 thePlayerStatus.IncreaseMP(itemEffects[x].num[y]);
-                                break;*/
+                                break;
                             default:
                                 Debug.Log("잘못된 Status 부위. HP, MP만 가능합니다");
                                 break;

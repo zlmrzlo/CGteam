@@ -11,6 +11,12 @@ TagManager:
   - Keybind
   - Boar
   - UIs2
+  - Switch
+  - Lava
+  - Stage
+  - Lava22_28
+  - EnemyAI
+  - BulletLava
   layers:
   - Default
   - TransparentFX

@@ -6,9 +6,15 @@ public class CameraShake : MonoBehaviour
 {
     public Camera mainCamera;
     Vector3 cameraPos;
+    Camera mainCameraOrigin;
 
     [SerializeField] [Range(0.01f, 0.1f)] float shakeRange = 0.05f;
     [SerializeField] [Range(0.1f, 1f)] float duration = 0.5f;
+
+    void Start()
+    {
+        mainCameraOrigin = mainCamera;
+    }
 
     public void Shake()
     {
@@ -31,6 +37,7 @@ public class CameraShake : MonoBehaviour
     {
         CancelInvoke("StartShake");
         //mainCamera.transform.position = cameraPos;
+        mainCamera = mainCameraOrigin;
     }
     
 }

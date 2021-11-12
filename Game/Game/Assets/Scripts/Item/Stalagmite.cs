@@ -12,6 +12,16 @@ public class Stalagmite : MonoBehaviour
     [SerializeField]
     private int knockbackPower;
 
+    private void Start()
+    {
+        cam = Camera.main;
+        if (transform.parent.parent.name == "Stalagmites (2)")
+        {
+            //print("hit");
+            gameObject.GetComponent<Rigidbody>().isKinematic = true;
+        }
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.transform.name == "Player")

@@ -12,6 +12,13 @@ public class lava : MonoBehaviour
 
     [SerializeField] private int damage;
 
+    private void Start()
+    {
+        Player = GameObject.Find("Player");
+        cam = Camera.main;
+        GotHitScreen = GameObject.Find("GotHitScreen");
+    }
+
     void Update()
     {
         if (GotHitScreen != null)
@@ -29,7 +36,17 @@ public class lava : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
+            //this.GetComponent<BoxCollider>().enabled = true;
+            this.GetComponent<BoxCollider>().isTrigger = false;
             StartCoroutine("countTime", 1);
+        }
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            StopCoroutine("countTime");
+            this.GetComponent<BoxCollider>().isTrigger = true;
         }
     }
 
@@ -50,12 +67,4 @@ public class lava : MonoBehaviour
         GotHitScreen.GetComponent<Image>().color = color;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "Player")
-        {
-            StopCoroutine("countTime");
-
-        }
-    }
 }

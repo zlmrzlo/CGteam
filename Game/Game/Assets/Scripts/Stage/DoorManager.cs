@@ -11,6 +11,9 @@ public class DoorManager : MonoBehaviour
     [SerializeField]
     private float doorSpeed;
     private Vector3 doorFinishPos;
+    public float upPos = -3.5f;
+    public float forwardPos = 0.0f;
+
 
     //private bool openDoor = false;
     private int turnOnSwitch;
@@ -18,7 +21,7 @@ public class DoorManager : MonoBehaviour
     void Start()
     {
         turnOnSwitch = 0;
-        doorFinishPos = new Vector3(door.transform.position.x, door.transform.position.y - 3.5f, door.transform.position.z);
+        doorFinishPos = new Vector3(door.transform.position.x, door.transform.position.y + upPos, door.transform.position.z + forwardPos);
     }
 
     void Update()

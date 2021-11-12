@@ -21,6 +21,10 @@ public class Object : MonoBehaviour
     void Start()
     {
         obj = this.gameObject;
+        if(gDirection == gravityDirection.Down)
+        {
+            gDirection = gravityDirection.Down;
+        }
         myRigid = obj.GetComponent<Rigidbody>();
     }
 

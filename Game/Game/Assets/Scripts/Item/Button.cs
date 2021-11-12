@@ -12,6 +12,7 @@ public class Button : MonoBehaviour
     public GameObject leftGravityController;
     public GameObject leftDisappearBlock1;
     public GameObject leftDisappearBlock2;
+    public GameObject FireTurret;
 
     // Start is called before the first frame update
     void Start()
@@ -34,6 +35,7 @@ public class Button : MonoBehaviour
             leftGravityController.SetActive(true);
             leftDisappearBlock1.SetActive(true);
             leftDisappearBlock2.SetActive(true);
+            FireTurret.SetActive(false);
         }
     }
 
@@ -48,5 +50,6 @@ public class Button : MonoBehaviour
         leftGravityController.SetActive(false);
         leftDisappearBlock1.SetActive(false);
         leftDisappearBlock2.SetActive(false);
+        FireTurret.SetActive(true);
     }
 }

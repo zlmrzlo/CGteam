@@ -15,6 +15,7 @@ public class Pushing : MonoBehaviour
     AudioSource buttonSound;
     Material buttonMaterial;
     bool clickButton;
+    public GameObject handR;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +38,7 @@ public class Pushing : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.N))
         {
+            handR.GetComponent<SphereCollider>().enabled = true;
             animator.SetBool("Push", true);
         }
     }

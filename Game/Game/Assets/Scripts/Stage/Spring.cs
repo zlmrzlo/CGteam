@@ -8,6 +8,8 @@ public class Spring : MonoBehaviour
     private Vector3 direction;
     private Vector3 position;
     private Vector3 normal;
+
+    public float springPower = 250.0f;
     void Start()
     {
         normal = transform.GetChild(0).position;
@@ -26,10 +28,10 @@ public class Spring : MonoBehaviour
         var rigid = obj.GetComponent<Rigidbody>();
         rigid.constraints = RigidbodyConstraints.FreezeRotation;
         if (obj.CompareTag("Player"))
-            rigid.AddForce(direction * 250.0f, ForceMode.Impulse);
+            rigid.AddForce(direction * springPower, ForceMode.Impulse);
         else
             rigid.AddForce(direction * 200.0f, ForceMode.Impulse);
-        Debug.Log("용수철 점프!");
+        //Debug.Log("용수철 점프!");
     }
     private void OnTriggerExit(Collider other)
     {

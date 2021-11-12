@@ -6,6 +6,7 @@ public class LeftStage : MonoBehaviour
 {
     public GameObject blocks;
     public GameObject leftWall;
+    public GameObject level1;
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +26,7 @@ public class LeftStage : MonoBehaviour
         {
             blocks.SetActive(false);
             leftWall.SetActive(true);
+            level1.SetActive(true);
         }
     }
 }

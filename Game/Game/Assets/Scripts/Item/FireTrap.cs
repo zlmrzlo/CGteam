@@ -9,13 +9,13 @@ public class FireTrap : MonoBehaviour
     public GameObject collider;
 
     [SerializeField]
-    private float startTime = 2f;
+    private float startTime = 0f;
 
     [SerializeField]
-    private float delaytTime1 = 2f;
+    private float delayTime1 = 3f;
 
     [SerializeField]
-    private float delaytTime2 = 2f;
+    private float delayTime2 = 3f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,10 +29,10 @@ public class FireTrap : MonoBehaviour
 
         while (true)
         {
-            yield return new WaitForSeconds(delaytTime1);
+            yield return new WaitForSeconds(delayTime1);
             fire.SetActive(false);
             collider.SetActive(false);
-            yield return new WaitForSeconds(delaytTime2);
+            yield return new WaitForSeconds(delayTime2);
             fire.SetActive(true);
             collider.SetActive(true);
         }

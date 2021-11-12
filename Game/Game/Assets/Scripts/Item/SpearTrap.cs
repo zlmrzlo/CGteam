@@ -9,6 +9,9 @@ public class SpearTrap : MonoBehaviour
     public GameObject Spear;
     public Camera cam;
     private float Dist;
+    bool alreadyAttacked;
+    public float bulletPower = 1.0f;
+    public float timeBetweenAttacks = 0.5f;
 
     [SerializeField]
     float distance;
@@ -18,6 +21,12 @@ public class SpearTrap : MonoBehaviour
 
     [SerializeField]
     private int knockbackPower;
+
+    private void Start()
+    {
+        Player = GameObject.FindGameObjectWithTag("Player");
+        cam = Camera.main;
+    }
 
     void Update()
     {
@@ -35,6 +44,12 @@ public class SpearTrap : MonoBehaviour
             i++;
         }
     }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
+    }
+
 
     private void OnCollisionEnter(Collision collision)
     {

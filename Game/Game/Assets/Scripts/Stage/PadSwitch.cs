@@ -33,6 +33,14 @@ public class PadSwitch : SwitchManager
     }
     private void checkWeight(Collider other)
     {
+        if (other.CompareTag("Lava"))
+        {
+            return;
+        }
+        if (other.CompareTag("BulletLava"))
+        {
+            return;
+        }
         GameObject otherobject = other.gameObject;
         Rigidbody rigid = otherobject.GetComponent<Rigidbody>();
         if (rigid.mass > weight)

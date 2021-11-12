@@ -26,6 +26,8 @@ public class Throwing : MonoBehaviour
 
     SphereCollider sphereCollider;
 
+    public float throwPower = 1.0f;
+
     bool is_Throw = false;
 
     // Start is called before the first frame update
@@ -41,7 +43,7 @@ public class Throwing : MonoBehaviour
 
         if (sphereCollider != null)
         {
-            //`Debug.Log("hit sphereCollider"); 
+            //Debug.Log("hit sphereCollider"); 
         }
 
         if (animator != null)
@@ -75,7 +77,7 @@ public class Throwing : MonoBehaviour
         // 던지는 시점에서의 손의 위치
         bomb.transform.position = parent.transform.position;
         bomb.SetActive(true);
-        audioSource.PlayDelayed(0.5f);
+        audioSource.Play();
 
         // 부모, 자식 관계 제거
         bomb.transform.parent = null;
@@ -84,8 +86,9 @@ public class Throwing : MonoBehaviour
         rigidbody.useGravity = true;
         rigidbody.isKinematic = false;
 
+        rigidbody.velocity = Vector3.zero;
         // 몸체의 앞쪽 방향으로 힘을 가함
-        rigidbody.AddForce(mainCamera.transform.forward * 25 + mainCamera.transform.up * 10, ForceMode.Impulse);
+        rigidbody.AddForce(mainCamera.transform.forward * 25 * throwPower + mainCamera.transform.up * 10 * throwPower, ForceMode.Impulse);
     }
 
     public void DeleteBomb()
@@ -94,6 +97,15 @@ public class Throwing : MonoBehaviour
         animator.SetBool("Throw", false);
         StartCoroutine(Bomb());
         StartCoroutine(RemoveBomb());
+    }
+    IEnumerator Bomb()
+    {
+        //Debug.Log("Bomb");
+        yield return new WaitForSeconds(2.5f);
+        //Debug.Log("Bomb wait");
+        sphereCollider.radius = 0.5f;
+        rigidbody.isKinematic = true;
+        sphereCollider.isTrigger = true;
     }
 
     IEnumerator RemoveBomb()
@@ -108,18 +120,10 @@ public class Throwing : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         bomb.SetActive(false);
         yield return new WaitForSeconds(1.5f);
-        sphereCollider.radius = 0.007f; 
+        sphereCollider.radius = 0.007f;
         sphereCollider.isTrigger = false;
         is_Throw = false;
     }
 
-    IEnumerator Bomb()
-    {
-        //Debug.Log("Bomb");
-        yield return new WaitForSeconds(2.5f);
-        //Debug.Log("Bomb wait");
-        sphereCollider.radius = 0.5f;
-        rigidbody.isKinematic = true;
-        sphereCollider.isTrigger = true;
-    }
+
 }
