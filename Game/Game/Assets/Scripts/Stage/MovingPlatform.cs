@@ -21,7 +21,7 @@ public class MovingPlatform : MonoBehaviour
     {
         player = GameObject.FindWithTag("Player");
         start = transform.position;
-        finish = transform.GetChild(1).position;
+        finish = transform.GetChild(0).position;
         direction = (finish - start).normalized;
         switchOn = false;
         goToFinish = true;

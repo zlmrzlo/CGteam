@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class StatusController : MonoBehaviour
 {
-
     // 체력
     [SerializeField] public int hp;
     public float currentHp;
@@ -15,9 +14,9 @@ public class StatusController : MonoBehaviour
     public float currentMp;
 
     // 필요한 이미지
-    [SerializeField] private Image[] images_GaugeFront;
-    [SerializeField] private Image[] images_GaugeBack;
-    [SerializeField] private Text[] texts_Gauge;
+    public Image[] images_GaugeFront;
+    public Image[] images_GaugeBack;
+    public Text[] texts_Gauge;
 
     private const int HP = 0, MP = 1;
     private float[] lerpTimer;
