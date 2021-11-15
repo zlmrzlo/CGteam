@@ -29,7 +29,7 @@ public class LevelRest : MonoBehaviour
         if (other.CompareTag("Player") && this.name == "Moving platform (5)")
         {
             //print("hit");
-            GetComponentInParent<Level1>().lava21.SetActive(false);
+            level1.GetComponent<Level1>().lava21.SetActive(false);
         }
 
 
