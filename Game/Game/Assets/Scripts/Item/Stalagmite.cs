@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Stalagmite : MonoBehaviour
 {
-    public Camera cam;
+    // public Camera cam;
 
     [SerializeField]
     private int damage;
@@ -14,7 +14,7 @@ public class Stalagmite : MonoBehaviour
 
     void Start()
     {
-        cam = Camera.main;
+        // cam = Camera.main;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,7 +25,7 @@ public class Stalagmite : MonoBehaviour
             Vector3 reactVec = collision.transform.position - transform.position;
             reactVec = reactVec.normalized;
             collision.transform.GetComponent<Rigidbody>().AddForce(reactVec * knockbackPower, ForceMode.Impulse);
-            cam.GetComponent<CameraShake>().Shake();
+            // cam.GetComponent<CameraShake>().Shake();
         }
     }
 }

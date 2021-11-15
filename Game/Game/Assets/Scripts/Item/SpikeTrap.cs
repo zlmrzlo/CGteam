@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpikeTrap : MonoBehaviour
 {
     public GameObject Player;
-    public Camera cam;
+    // public Camera cam;
 
 
     [SerializeField]
@@ -27,7 +27,7 @@ public class SpikeTrap : MonoBehaviour
     void Start()
     {
         StartCoroutine("Spike");
-        cam = Camera.main;
+        // cam = Camera.main;
     }
 
     IEnumerator Spike()
@@ -52,7 +52,7 @@ public class SpikeTrap : MonoBehaviour
             Vector3 reactVec = collision.transform.position - transform.position;
             reactVec = reactVec.normalized;
             collision.transform.GetComponent<Rigidbody>().AddForce(reactVec * knockbackPower, ForceMode.Impulse);
-            cam.GetComponent<CameraShake>().Shake();
+            // cam.GetComponent<CameraShake>().Shake();
 
         }
     }

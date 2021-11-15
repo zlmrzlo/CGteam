@@ -7,7 +7,7 @@ public class SpearTrap : MonoBehaviour
     public GameObject Player;
     public GameObject Trap;
     public GameObject Spear;
-    public Camera cam;
+    // public Camera cam;
     private float Dist;
     bool alreadyAttacked;
     public float bulletPower = 1.0f;
@@ -25,7 +25,7 @@ public class SpearTrap : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        cam = Camera.main;
+        // cam = Camera.main;
     }
 
     void Update()
@@ -59,7 +59,7 @@ public class SpearTrap : MonoBehaviour
             Vector3 reactVec = collision.transform.position - transform.position;
             reactVec = reactVec.normalized;
             collision.transform.GetComponent<Rigidbody>().AddForce(reactVec * knockbackPower, ForceMode.Impulse);
-            cam.GetComponent<CameraShake>().Shake();
+            // cam.GetComponent<CameraShake>().Shake();
 
         }
     }
