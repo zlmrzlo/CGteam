@@ -17,6 +17,8 @@ public class DeathScreen : MonoBehaviour
         Cursor.visible = false;
         GameManager.canPlayerMove = true;
         GameManager.isPause = false;
+        Time.timeScale = 1f;
+
     }
 
     /*public void ClickLoad()

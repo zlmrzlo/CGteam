@@ -169,11 +169,15 @@ public class PlayerController : MonoBehaviour
         GameObject[] uis = GameObject.FindGameObjectsWithTag("UIs");
         for (int i = 0; i < uis.Length; i++)
             uis[i].SetActive(false);
+        uis = GameObject.FindGameObjectsWithTag("UIs2");
+        for (int i = 0; i < uis.Length; i++)
+            uis[i].SetActive(false);
 
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.canPlayerMove = false;
         GameManager.isPause = true;
+        Time.timeScale = 0;
         deathScreenObj.SetActive(true);
     }
 
