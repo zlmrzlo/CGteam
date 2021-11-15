@@ -32,6 +32,7 @@ public class Ending : MonoBehaviour
             yield return null;
         }
         yield return new WaitForSeconds(1);
+        GameManager.isPause = false;
         SceneManager.LoadScene("Title");
     }
 }
