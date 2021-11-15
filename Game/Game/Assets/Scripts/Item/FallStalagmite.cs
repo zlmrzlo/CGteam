@@ -28,6 +28,7 @@ public class FallStalagmite : MonoBehaviour
     }
     private void Fall()
     {
+        Stone.GetComponent<Rigidbody>().isKinematic = false;
         Stone.GetComponent<Rigidbody>().useGravity = true;
         //Destroy(gameObject);
         //Destroy(Stone, 10);

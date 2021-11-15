@@ -55,6 +55,10 @@ public class DoorManager : MonoBehaviour
             switchs[i].isOpen = true;
         }
         door.transform.position = Vector3.MoveTowards(door.transform.position, doorFinishPos, doorSpeed);
-        barrier.SetActive(true);
+        
+        if(barrier != null)
+        {
+            barrier.SetActive(true);
+        }
     }
 }

@@ -7,6 +7,8 @@ public class SceneMove : MonoBehaviour
 {
     public Transform stage3_UI;
     public Transform stage3_Item;
+    public Transform stage3_UI_Out;
+    public Transform stage3_Item_Out;
     public Transform stage3_Start;
     public Transform stage3_Stage;
 
@@ -34,11 +36,11 @@ public class SceneMove : MonoBehaviour
             }
             else if (this.transform.parent.parent.name == "ItemStageDoor")
             {
-                other.transform.position = stage3_Item.position;
+                other.transform.position = stage3_Item_Out.position;
             }
             else if (this.transform.parent.parent.name == "UIStageDoor")
             {
-                other.transform.position = stage3_UI.position;
+                other.transform.position = stage3_UI_Out.position;
             }
             else if (this.transform.parent.parent.name == "24Door")
             {
