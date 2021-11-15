@@ -26,7 +26,7 @@ public class WallLadder : MonoBehaviour
             //print(Random.Range(1, transform.childCount - 1));
             transform.GetChild(Random.Range(i, i + 2)).GetComponent<BoxCollider>().enabled = false;
             wallMaterial = transform.GetChild(Random.Range(i, i + 2)).GetComponent<Renderer>().material;
-            wallMaterial.SetColor("_EmissiveColor", new Color(255.0f, 255.0f, 255.0f, 200.0f));
+            wallMaterial.color = new Color(1, 1, 1, Random.Range(2, 7) * 30.0f/255.0f);
             //Random.Range(1, transform.childCount - 1);
         }
     }
