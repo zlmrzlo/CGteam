@@ -19,6 +19,7 @@ public class LeftSpikeTrap : MonoBehaviour
     void Start()
     {
         StartCoroutine("Spike");
+        cam = Camera.main;
     }
 
     IEnumerator Spike()

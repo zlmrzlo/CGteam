@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallSwitches : MonoBehaviour
 {
-    GameObject button;
+    public GameObject button;
     Material buttonMaterial;
     public GameObject wall;
     public bool switchState = false;
@@ -12,7 +12,10 @@ public class WallSwitches : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        button = transform.Find("PressurePadInner").gameObject;
+        if(button == null)
+        {
+            button = transform.Find("PressurePadInner").gameObject;
+        }
         buttonMaterial = button.GetComponent<Renderer>().material;
         //wall = transform.parent.parent.transform.Find("Walls").transform.Find("WallsTrap (4)").gameObject;
         //print(wall.name);
