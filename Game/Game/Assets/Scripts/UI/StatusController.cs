@@ -37,14 +37,6 @@ public class StatusController : MonoBehaviour
         currentHp = Mathf.Clamp(currentHp, 0, hp);
         currentMp = Mathf.Clamp(currentMp, 0, mp);
         GaugeUpdate();
-        if (Input.GetKeyDown(KeyCode.Keypad4))
-            DecreaseHP(Random.Range(5, 10));
-        if (Input.GetKeyDown(KeyCode.Keypad6))
-            IncreaseHP(Random.Range(5, 10));
-        if (Input.GetKeyDown(KeyCode.Keypad7))
-            DecreaseMP(Random.Range(5, 10));
-        if (Input.GetKeyDown(KeyCode.Keypad9))
-            IncreaseMP(Random.Range(5, 10));
     }
 
     private void GaugeUpdate()
