@@ -7,7 +7,7 @@ public class Fire_Collider : MonoBehaviour
 {
     public static bool inLava = false;
     public GameObject Player;
-    public Camera cam;
+    // public Camera cam;
     public GameObject GotHitScreen;
 
     [SerializeField]
@@ -16,7 +16,7 @@ public class Fire_Collider : MonoBehaviour
     private void Start()
     {
         Player = GameObject.FindGameObjectWithTag("Player");
-        cam = Camera.main;
+        // cam = Camera.main;
         GotHitScreen = GameObject.Find("GotHitScreen");
     }
 
@@ -52,7 +52,7 @@ public class Fire_Collider : MonoBehaviour
     void gotHurt()
     {
         Player.transform.GetComponent<StatusController>().DecreaseHP(damage);
-        cam.GetComponent<CameraShake>().Shake();
+        // cam.GetComponent<CameraShake>().Shake();
         var color = GotHitScreen.GetComponent<Image>().color;
         color.a = 0.5f;
         GotHitScreen.GetComponent<Image>().color = color;
