@@ -28,16 +28,18 @@ public class LevelRest : MonoBehaviour
 
         if (other.CompareTag("Player") && this.name == "Moving platform (5)")
         {
-            print("hit");
-            GetComponent<LevelRest>().level2.GetComponent<Level2>().lava21.SetActive(false);
-            level2.SetActive(true);
+            //print("hit");
+            GetComponentInParent<Level1>().lava21.SetActive(false);
         }
 
 
         if (other.CompareTag("Player") && this.name == "UpGravity")
         {
-            GetComponentInParent<Level2>().lava11.SetActive(false);
-            GetComponentInParent<Level2>().lava19.SetActive(false);
+            //print(this.name);
+            //print(other.name);
+            level2.SetActive(true);
+            level2.GetComponent<Level2>().lava11.SetActive(false);
+            level2.GetComponent<Level2>().lava19.SetActive(false);
             level1.SetActive(false);
         }
     }

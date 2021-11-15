@@ -19,7 +19,7 @@ public class GravityController : MonoBehaviour
     private void Awake()
     {
         this.audio = this.gameObject.GetComponent<AudioSource>();
-        Bomb = GameObject.Find("Bomb");
+        Bomb = GameObject.Find("Hand.R").transform.Find("Bomb").gameObject;
         bombObject = Bomb.GetComponent<Object>();
 
         particle = GetComponent<ParticleSystem>();
@@ -56,7 +56,6 @@ public class GravityController : MonoBehaviour
 
         if (other.CompareTag("Bomb"))
         {
-
         }
         else if (other.CompareTag("Stage"))
         {

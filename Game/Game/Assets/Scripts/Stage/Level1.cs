@@ -7,6 +7,7 @@ public class Level1 : MonoBehaviour
     public GameObject lava99;
     public GameObject lava55;
     public GameObject lava11;
+    public GameObject lava21;
     public GameObject switch1;
     bool turnOn;
 

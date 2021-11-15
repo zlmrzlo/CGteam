@@ -36,10 +36,19 @@ public class lava : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
+            //this.GetComponent<BoxCollider>().enabled = true;
+            this.GetComponent<BoxCollider>().isTrigger = false;
             StartCoroutine("countTime", 1);
         }
     }
-
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.transform.tag == "Player")
+        {
+            StopCoroutine("countTime");
+            this.GetComponent<BoxCollider>().isTrigger = true;
+        }
+    }
     IEnumerator countTime(float delayTime)
     {
         gotHurt();
@@ -57,13 +66,5 @@ public class lava : MonoBehaviour
         GotHitScreen.GetComponent<Image>().color = color;
     }
 
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.transform.tag == "Player")
-        {
-            StopCoroutine("countTime");
-
-        }
-    }
 
 }

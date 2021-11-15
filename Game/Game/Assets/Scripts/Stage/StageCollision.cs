@@ -23,8 +23,8 @@ public class StageCollision : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            print("Player");
-            print("velocity: " + other.GetComponent<PlayerController>().myRigid.velocity);
+            //print("Player");
+            //print("velocity: " + other.GetComponent<PlayerController>().myRigid.velocity);
             other.GetComponent<PlayerController>().myRigid.velocity = new Vector3(0, 0, 0);
             boxCollider.isTrigger = false;
         }
