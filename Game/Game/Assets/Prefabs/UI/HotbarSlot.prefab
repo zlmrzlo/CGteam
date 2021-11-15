@@ -243,6 +243,8 @@ MonoBehaviour:
   thisSlot: {fileID: 2441838832537783852}
   itemImage: {fileID: 3158416554157884736}
   textCount: {fileID: 2579026374071295025}
+  frameImage: {fileID: 8024412519199055654}
+  itemBGImage: {fileID: 1982707814768138998}
   countImage: {fileID: 2332187709842663687}
   InstObject: {fileID: 0}
   scrollPosition: 0

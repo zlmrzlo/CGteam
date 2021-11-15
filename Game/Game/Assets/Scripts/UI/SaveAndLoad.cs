@@ -101,6 +101,7 @@ public class SaveAndLoad : MonoBehaviour
                 boxes[i].transform.eulerAngles = saveData.boxRot[i];
                 boxes[i].GetComponent<Object>().gDirection = saveData.boxGDir[i];
             }
+            saveData = new SaveData();
         }
         else
             Debug.Log("세이브 파일이 없습니다.");

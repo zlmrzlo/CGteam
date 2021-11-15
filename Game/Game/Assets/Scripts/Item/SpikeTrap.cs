@@ -6,7 +6,6 @@ public class SpikeTrap : MonoBehaviour
 {
     public GameObject Player;
     public Camera cam;
-    public float spikeDistance = 0.9f;
 
 
     [SerializeField]
@@ -27,15 +26,6 @@ public class SpikeTrap : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // new Quaternion(-0.3f, -0.6f, 0.7f, -0.3f)
-        // spikeTrap이 z방향으로 180도 돌아갔을 때의 쿼터니언값
-        //print(this.GetComponentInParent<Transform>().rotation == new Quaternion(-0.3f, -0.6f, 0.7f, -0.3f));
-        if(this.GetComponentInParent<Transform>().rotation == new Quaternion(-0.3f, -0.6f, 0.7f, -0.3f))
-        {
-            spikeDistance *= -1;
-        }
-        Player = GameObject.FindGameObjectWithTag("Player");
-        cam = Camera.main;
         StartCoroutine("Spike");
     }
 
@@ -45,9 +35,10 @@ public class SpikeTrap : MonoBehaviour
 
         while (true)
         {
-            transform.position += new Vector3(0, spikeDistance, 0);
+            transform.localPosition += Vector3.up * 0.9f;
             yield return new WaitForSeconds(UpTime);
-            transform.position -= new Vector3(0, spikeDistance, 0);
+            transform.localPosition -= Vector3.up * 0.9f;
+            //transform.position -= new Vector3(0, 0.9f, 0);
             yield return new WaitForSeconds(DownTime);
         }
     }
