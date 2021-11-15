@@ -78,7 +78,7 @@ public class GravityController : MonoBehaviour
             bombObject.gDirection = gravityDirection;
             this.audio.Play();
         }
-        else
+        else if (other.CompareTag("Object"))
         {
             other.GetComponent<Object>().changeGravity(changeTo);
             this.audio.Play();
