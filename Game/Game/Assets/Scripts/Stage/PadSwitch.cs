@@ -47,7 +47,7 @@ public class PadSwitch : SwitchManager
         Rigidbody rigid = otherobject.GetComponent<Rigidbody>();
         if (rigid.mass > weight)
         {
-            this.audio.Play();
+
             switchOn();
         }
     }
@@ -56,6 +56,8 @@ public class PadSwitch : SwitchManager
         if (isOpen == true)
             return;
         checkWeight(other);
+        if(turnOn)
+            this.audio.Play();
     }
     private void OnTriggerStay(Collider other)
     {

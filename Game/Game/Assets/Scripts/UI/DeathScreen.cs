@@ -16,6 +16,7 @@ public class DeathScreen : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         GameManager.canPlayerMove = true;
+        GameManager.isPause = false;
     }
 
     /*public void ClickLoad()

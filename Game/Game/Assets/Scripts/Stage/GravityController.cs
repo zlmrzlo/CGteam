@@ -81,6 +81,7 @@ public class GravityController : MonoBehaviour
         else
         {
             other.GetComponent<Object>().changeGravity(changeTo);
+            this.audio.Play();
         }
     }
 }

@@ -173,6 +173,7 @@ public class PlayerController : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         GameManager.canPlayerMove = false;
+        GameManager.isPause = true;
         deathScreenObj.SetActive(true);
     }
 
