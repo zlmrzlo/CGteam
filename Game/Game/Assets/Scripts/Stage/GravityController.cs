@@ -7,6 +7,8 @@ public class GravityController : MonoBehaviour
 {
     [SerializeField]
     private gravityDirection changeTo;
+    private AudioSource audio;
+
 
     GameObject Bomb;
     gravityDirection gravityDirection;
@@ -15,6 +17,7 @@ public class GravityController : MonoBehaviour
 
     private void Awake()
     {
+        this.audio = this.gameObject.GetComponent<AudioSource>();
         Bomb = GameObject.Find("Bomb");
         bombObject = Bomb.GetComponent<Object>();
     }
@@ -48,6 +51,7 @@ public class GravityController : MonoBehaviour
             playerObject.changeGravity(changeTo);
             gravityDirection = playerObject.gDirection;
             bombObject.gDirection = gravityDirection;
+            this.audio.Play();
         }
         else
         {
