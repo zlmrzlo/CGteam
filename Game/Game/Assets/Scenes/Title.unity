@@ -1222,9 +1222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2840e62b314b8a54ea251c9e1f8f188a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  progressObject: {fileID: 0}
   resetPosObj: {fileID: 213278686}
-  position: -67.5
 --- !u!65 &929866029
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2529,11 +2527,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1428875126434461872, guid: 377b71bf93c53c54bb3ab870c14953a9,
+        type: 3}
+      propertyPath: m_TagString
+      value: TitleButton
+      objectReference: {fileID: 0}
     - target: {fileID: 2624728065044776223, guid: 377b71bf93c53c54bb3ab870c14953a9,
         type: 3}
       propertyPath: KeyBindUI
       value: 
       objectReference: {fileID: 2031210517}
+    - target: {fileID: 2714520115661671202, guid: 377b71bf93c53c54bb3ab870c14953a9,
+        type: 3}
+      propertyPath: m_TagString
+      value: TitleButton
+      objectReference: {fileID: 0}
     - target: {fileID: 4644483613086886135, guid: 377b71bf93c53c54bb3ab870c14953a9,
         type: 3}
       propertyPath: m_TagString
@@ -2548,6 +2556,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TitleCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4644483614035210600, guid: 377b71bf93c53c54bb3ab870c14953a9,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4644483614035210601, guid: 377b71bf93c53c54bb3ab870c14953a9,
         type: 3}

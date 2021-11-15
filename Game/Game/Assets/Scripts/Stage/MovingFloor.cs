@@ -18,22 +18,25 @@ public class MovingFloor : MonoBehaviour
         // moveSwitch = false은 밀기
         // moveSwitch = true은 당기기
         //print(this.transform.position);
-        if(this.transform.position.z <= -3.5f)
+        if(!GameManager.isPause)
         {
-            moveSwitch = false;
-        }
-        if(this.transform.position.z >= 82.5f)
-        {
-            moveSwitch = true;
-        }
+            if (this.transform.position.z <= -3.5f)
+            {
+                moveSwitch = false;
+            }
+            if (this.transform.position.z >= 82.5f)
+            {
+                moveSwitch = true;
+            }
 
-        if (!moveSwitch)
-        {
-            PushFloor();
-        }
-        else
-        {
-            PullFloor();
+            if (!moveSwitch)
+            {
+                PushFloor();
+            }
+            else
+            {
+                PullFloor();
+            }
         }
     }
 

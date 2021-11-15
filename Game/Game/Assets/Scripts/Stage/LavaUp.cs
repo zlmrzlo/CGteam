@@ -20,7 +20,7 @@ public class LavaUp : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (isIn)
+        if (isIn && !GameManager.isPause)
         {
             Lava.transform.position = Vector3.MoveTowards(Lava.transform.position, end, velocity * Time.deltaTime);
             Debug.Log("용암 상승!");

@@ -131,6 +131,7 @@ public class Setting : MonoBehaviour
             Debug.Log("세팅 파일이 없습니다.");
             string json = JsonUtility.ToJson(settingData);
             File.WriteAllText(SETTING_DATA_DIRECTORY + SETTING_FILENAME, json);
+            Screen.SetResolution(640, 480, Screen.fullScreen);
         }
     }
     void Update()
