@@ -10,7 +10,7 @@ public class GravityController : MonoBehaviour
     private AudioSource audio;
 
 
-    GameObject Bomb;
+    public GameObject Bomb;
     gravityDirection gravityDirection;
     Object playerObject;
     Object bombObject;
@@ -19,7 +19,10 @@ public class GravityController : MonoBehaviour
     private void Awake()
     {
         this.audio = this.gameObject.GetComponent<AudioSource>();
-        Bomb = GameObject.Find("Hand.R").transform.Find("Bomb").gameObject;
+        if(Bomb.gameObject == null)
+        {
+            Bomb = GameObject.Find("Hand.R").transform.Find("Bomb").gameObject;
+        }
         bombObject = Bomb.GetComponent<Object>();
 
         particle = GetComponent<ParticleSystem>();
