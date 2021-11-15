@@ -13,6 +13,7 @@ public class DoorManager : MonoBehaviour
     private Vector3 doorFinishPos;
     public float upPos = -3.5f;
     public float forwardPos = 0.0f;
+    public GameObject barrier;
 
 
     //private bool openDoor = false;
@@ -54,6 +55,6 @@ public class DoorManager : MonoBehaviour
             switchs[i].isOpen = true;
         }
         door.transform.position = Vector3.MoveTowards(door.transform.position, doorFinishPos, doorSpeed);
-
+        barrier.SetActive(true);
     }
 }
