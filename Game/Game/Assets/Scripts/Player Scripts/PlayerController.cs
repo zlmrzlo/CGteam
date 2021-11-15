@@ -128,12 +128,12 @@ public class PlayerController : MonoBehaviour
                 CameraRotation();
                 CharacterRotation();
             }
-            // 위, 아래
+            /*// 위, 아래
             CharaterRotationTryInverse();
             // 오른쪽, 왼쪽
             CharaterRotationTrySideInverse();
             // 앞, 뒤
-            CharaterRotationTryFrontInverse();
+            CharaterRotationTryFrontInverse();*/
         }
     }
 
