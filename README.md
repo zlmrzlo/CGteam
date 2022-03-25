@@ -1,5 +1,5 @@
 # 상세 설명
-위의 트레저헌터.pdf 파일 참조
+위의 트레져헌터.pdf 파일 참조
 
 # 영상 링크
 무편집: https://youtu.be/SmBStkTKBTw \
