@@ -1,5 +1,5 @@
 # 영상 링크
-무편집: https://youtu.be/SmBStkTKBTw
+무편집: https://youtu.be/SmBStkTKBTw \
 편집: https://youtu.be/uJnyZ2MJ-4w
 
 # 게임 설명
